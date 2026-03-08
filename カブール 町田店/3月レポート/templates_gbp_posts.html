@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBP投稿テンプレート集 | カブール 町田店</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+    :root {
+      --primary: #1a1a2e;
+      --accent: #d4763c;
+      --accent2: #4a3728;
+      --gold: #c5a55a;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #10b981;
+      --blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+    .hero {
+      background: linear-gradient(135deg, #2c1810 0%, var(--accent2) 50%, #1a1a2e 100%);
+      color: #fff; padding: 60px 40px 50px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,118,60,0.2) 0%, transparent 70%); border-radius: 50%;
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; background: rgba(212,118,60,0.2); border: 1px solid rgba(212,118,60,0.4);
+      color: #e8a878; font-size: 12px; font-weight: 600; padding: 4px 16px; border-radius: 20px;
+      letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .hero h1 { font-size: 32px; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    .tab-bar {
+      display: flex; gap: 0; margin: 32px 0 24px; border-bottom: 2px solid var(--border);
+    }
+    .tab-btn {
+      padding: 12px 32px; background: none; border: none; font-family: inherit;
+      font-size: 15px; font-weight: 600; color: var(--muted); cursor: pointer;
+      border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--accent); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .schedule-overview {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 32px;
+    }
+    .schedule-overview h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--primary); }
+    .schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .schedule-day {
+      padding: 8px 4px; text-align: center; font-size: 11px; border-radius: 6px; min-height: 60px;
+    }
+    .schedule-day.header { font-weight: 700; color: var(--muted); min-height: auto; background: none; }
+    .schedule-day.has-post { background: #fef3c7; border: 1px solid #fcd34d; cursor: pointer; }
+    .schedule-day.has-post:hover { background: #fde68a; }
+    .schedule-day .day-num { font-weight: 700; font-size: 13px; }
+    .schedule-day .day-type { font-size: 9px; color: var(--accent); font-weight: 600; margin-top: 2px; }
+
+    .post-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; margin-bottom: 20px; position: relative; transition: box-shadow 0.2s;
+    }
+    .post-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .post-date {
+      background: var(--primary); color: #fff; padding: 6px 14px; border-radius: 8px;
+      font-size: 13px; font-weight: 700;
+    }
+    .post-type {
+      font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+    }
+    .type-update { background: #dbeafe; color: #1e40af; }
+    .type-event { background: #d1fae5; color: #065f46; }
+    .type-offer { background: #fef3c7; color: #92400e; }
+    .post-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+    .post-text {
+      font-size: 14px; line-height: 1.9; background: #f9fafb; border-radius: 8px;
+      padding: 16px; border-left: 3px solid var(--accent); white-space: pre-wrap; margin-bottom: 16px;
+    }
+    .post-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .post-meta-item { font-size: 12px; }
+    .post-meta-item .meta-label { font-weight: 700; color: var(--primary); display: block; margin-bottom: 2px; }
+    .post-meta-item .meta-value { color: var(--muted); }
+    .copy-btn {
+      padding: 8px 16px; border: 1px solid var(--accent); border-radius: 8px; background: #fff;
+      color: var(--accent); font-family: inherit; font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; margin-right: 8px;
+    }
+    .copy-btn:hover { background: var(--accent); color: #fff; }
+    .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); }
+    .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    footer {
+      text-align: center; padding: 40px 24px; color: var(--muted); font-size: 12px;
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px 30px; }
+      .hero h1 { font-size: 24px; }
+      .container { padding: 0 16px; }
+      .post-card { padding: 16px; }
+      .post-meta { grid-template-columns: 1fr; }
+      .tab-btn { padding: 10px 16px; font-size: 13px; }
+      .schedule-grid { font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">GBP POST TEMPLATES</div>
+    <h1>GBP投稿<span>テンプレート集</span></h1>
+    <p class="hero-sub">カブール 町田店 | 3月〜4月 全12投稿 コピー&ペーストですぐ使える</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="march">3月（6投稿）</button>
+    <button class="tab-btn" data-tab="april">4月（6投稿）</button>
+  </div>
+
+  <!-- 3月 -->
+  <div class="tab-content active" id="tab-march">
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">3/7（金）</span>
+        <span class="post-type type-offer">特典</span>
+      </div>
+      <div class="post-title">春のボディメイクキャンペーン告知</div>
+      <div class="post-text">🌸 春のボディメイクキャンペーン開催中 🌸
+
+薄着の季節に向けて、今からカラダづくりを始めませんか？
+
+カブール町田店では、インドエステ伝統のオールハンド痩身施術で、お一人おひとりのお悩みに合わせたボディメイクをご提案いたします。
+
+🎁 3月限定：初回体験 特別価格でご案内中！
+📞 お気軽にお問い合わせください
+
+#町田エステ #痩身 #インドエステ #ボディメイク</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">施術ルームの写真 or 春らしい花とサロン内装のカット</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「予約」→ ホットペッパーまたは電話番号リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">3/11（火）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">インドエステとは？豆知識コラム</div>
+      <div class="post-text">【インドエステって何？🇮🇳】
+
+「インドエステ」とは、インド伝統医学アーユルヴェーダに基づいたエステティック技法のこと。
+
+機械を一切使わず、セラピストのオールハンドで全身をケアします。自然由来のハーブオイルを使い、体の巡りを整えながらスリミング効果を引き出すのが特徴です。
+
+町田でインドエステをお探しなら、カブール町田店へ。
+
+#インドエステ #アーユルヴェーダ #町田エステ #オールハンド</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ハーブオイルの写真、または施術中の手元アップ</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「詳細」→ HP記事リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">3/15（土）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">神業ツインマッサージのご紹介</div>
+      <div class="post-text">✨ 当店人気No.1「神業ツインマッサージ」✨
+
+2人のセラピストが息を合わせ、同時に全身をオールハンドでほぐしていく至極の施術。
+
+通常の2倍のアプローチで、短時間でも深い痩身効果とリラクゼーションを実感いただけます。
+
+「一度受けたらやみつきになる」と多くのお客様にご好評いただいている、カブール町田店だけの特別メニューです。
+
+#神業ツインマッサージ #痩身エステ #町田 #オールハンド施術</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ツインマッサージ施術中の写真（2人のセラピストの手元）</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「予約」→ 電話番号リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">3/19（水）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">お客様の声紹介（ビフォーアフター）</div>
+      <div class="post-text">📣 お客様の声をご紹介します！
+
+「3回通ってウエスト-5cm！こんなに変わると思わなかった」（40代女性）
+
+カブール町田店のインドエステは、お一人おひとりの体質に合わせたオーダーメイド施術。アーユルヴェーダの知恵とセラピストの熟練の手技で、内側から体を整えていきます。
+
+まずは体験コースでお試しください。
+
+#ビフォーアフター #痩身 #町田エステ #ダイエット</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ビフォーアフター写真（お客様許可済み）or イメージカット</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「予約」→ ホットペッパーリンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">3/24（月）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">スタッフ紹介・技術力アピール</div>
+      <div class="post-text">👩‍⚕️ セラピスト紹介
+
+カブール町田店のセラピストは、全員がインドエステの専門研修を修了したプロフェッショナル。
+
+お客様のお体の状態を指先で感じ取り、凝りやむくみのポイントを的確にアプローチします。オールハンドだからこそ実現できる、繊細で力強い施術をぜひご体感ください。
+
+🌿 あなたの「なりたい自分」を叶えるお手伝いをいたします。
+
+#エステティシャン #インドエステ #町田サロン #オールハンド</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">セラピストのプロフィール写真（笑顔・制服着用）</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「詳細」→ HPスタッフ紹介ページ</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">3/28（金）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">春のデトックス特集</div>
+      <div class="post-text">🌱 春はデトックスの季節！
+
+冬の間に溜まった老廃物を、インドエステのオールハンド施術でスッキリ流しませんか？
+
+カブール町田店では、アーユルヴェーダの理論に基づいたデトックスコースをご用意。ハーブオイルと熟練の手技で、体の巡りを整え、内側からキレイに。
+
+春を軽やかに過ごすためのボディケア、始めましょう。
+
+#デトックス #春エステ #痩身町田 #インドエステ #スリミング</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ハーブオイル・施術風景 or 春の花をあしらったサロン内装</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「予約」→ 電話番号リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4月 -->
+  <div class="tab-content" id="tab-april">
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">4/2（水）</span>
+        <span class="post-type type-offer">特典</span>
+      </div>
+      <div class="post-title">新年度スタートキャンペーン</div>
+      <div class="post-text">🌸 新年度スタートキャンペーン！🌸
+
+新しい季節、新しい自分へ。カブール町田店で理想のボディメイクを始めませんか？
+
+4月限定の特別プランをご用意しました。インドエステ伝統のオールハンド痩身で、お体の悩みにトータルアプローチ。
+
+初めての方も、お気軽にご相談ください。
+
+📞 ご予約・お問い合わせはお電話で
+
+#新年度 #町田エステ #痩身 #ボディメイク #キャンペーン</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">桜とサロンの組み合わせ or キャンペーンバナー</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「特典を見る」→ ホットペッパーリンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">4/7（月）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">GW前ボディメイク特集</div>
+      <div class="post-text">🏖 GWまであと3週間！
+
+旅行や帰省の前に、ボディラインを整えておきませんか？
+
+カブール町田店の痩身エステは、即効性のあるスリミング施術が人気。オールハンドで丁寧にアプローチし、1回の施術でもお体の変化を実感いただけます。
+
+GWを自信を持って楽しむために、今から始めましょう！
+
+#GWダイエット #痩身エステ #町田 #スリミング #ボディメイク</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ビフォーアフター or 施術風景の写真</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「予約」→ 電話番号リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">4/11（金）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">神業ツインマッサージ深堀り</div>
+      <div class="post-text">💆‍♀️ 「ツインマッサージ」体験された方の感想
+
+「二人同時にほぐされるのは初めて！全身がポカポカして、終わった後の軽さが全然違う」
+
+カブール町田店の神業ツインマッサージは、2人のセラピストが呼吸を合わせてオールハンドで施術。通常の倍の手で、深いコリやむくみにアプローチします。
+
+町田エリアでこの体験ができるのは当店だけ。
+
+#ツインマッサージ #インドエステ #町田エステ #オールハンド</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ツインマッサージ施術風景（動画15秒も効果的）</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「予約」→ 電話番号リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">4/16（水）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">ブライダルエステのご案内</div>
+      <div class="post-text">💍 花嫁様へ - ブライダルエステのご案内
+
+一生に一度の晴れの日を、最高のコンディションで迎えませんか？
+
+カブール町田店では、挙式日から逆算したオーダーメイドのブライダルエステプランをご用意。インドエステのオールハンド施術で、デコルテ・二の腕・背中を集中ケア。
+
+ウェディングドレスを美しく着こなすためのボディメイクをお手伝いします。
+
+#ブライダルエステ #町田 #花嫁準備 #痩身 #ウェディング</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">エレガントなサロン写真 or ブライダルイメージカット</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「詳細」→ ブライダルメニューページ</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">4/21（月）</span>
+        <span class="post-type type-update">最新情報</span>
+      </div>
+      <div class="post-title">アーユルヴェーダの魅力</div>
+      <div class="post-text">🌿 5000年の叡智「アーユルヴェーダ」
+
+インドエステの根底にあるのは、5000年以上の歴史を持つインド伝統医学「アーユルヴェーダ」。
+
+体質（ドーシャ）に合わせたオイルを選び、オールハンドで全身の巡りを整えることで、痩身だけでなく心身のバランスを取り戻します。
+
+カブール町田店で、本物のアーユルヴェーダ体験を。
+
+#アーユルヴェーダ #インドエステ #町田エステ #デトックス #ホリスティック</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ハーブ・オイルのフラットレイ写真</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「詳細」→ HP記事リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-date">4/25（金）</span>
+        <span class="post-type type-event">イベント</span>
+      </div>
+      <div class="post-title">母の日ギフト提案</div>
+      <div class="post-text">🎁 母の日に「癒し」を贈りませんか？
+
+5月の母の日に、カブール町田店のエステ体験チケットはいかがですか？
+
+日頃頑張っているお母様に、インドエステの極上リラクゼーションをプレゼント。オールハンドの温かな施術で、心身ともにほぐれる至福のひとときを。
+
+🎀 ギフトチケットのご用意ございます
+📞 お気軽にお問い合わせください
+
+#母の日 #ギフト #町田エステ #インドエステ #プレゼント</div>
+      <div class="post-meta">
+        <div class="post-meta-item">
+          <span class="meta-label">推奨画像</span>
+          <span class="meta-value">ギフトチケットの写真 or 花束とサロンの組み合わせ</span>
+        </div>
+        <div class="post-meta-item">
+          <span class="meta-label">CTAボタン</span>
+          <span class="meta-value">「電話」→ 電話番号リンク</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyPost(this)">投稿文をコピー</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>提供: シンパートナーズ</p>
+  <p style="margin-top:4px; font-size:11px; color:#9ca3af;">カブール 町田店 MEO対策支援ツール</p>
+</footer>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+function copyPost(btn) {
+  const card = btn.closest('.post-card');
+  const text = card.querySelector('.post-text').textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'コピー完了';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '投稿文をコピー';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

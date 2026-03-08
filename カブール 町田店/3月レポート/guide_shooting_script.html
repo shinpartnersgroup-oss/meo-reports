@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>撮影指示書 & 声かけスクリプト | カブール 町田店</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+    :root {
+      --primary: #1a1a2e;
+      --accent: #d4763c;
+      --accent2: #4a3728;
+      --gold: #c5a55a;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #10b981;
+      --red: #ef4444;
+      --blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+    .hero {
+      background: linear-gradient(135deg, #2c1810 0%, var(--accent2) 50%, #1a1a2e 100%);
+      color: #fff; padding: 60px 40px 50px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,118,60,0.2) 0%, transparent 70%); border-radius: 50%;
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; background: rgba(212,118,60,0.2); border: 1px solid rgba(212,118,60,0.4);
+      color: #e8a878; font-size: 12px; font-weight: 600; padding: 4px 16px; border-radius: 20px;
+      letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .hero h1 { font-size: 30px; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    .tab-bar {
+      display: flex; gap: 0; margin: 32px 0 24px; border-bottom: 2px solid var(--border);
+    }
+    .tab-btn {
+      padding: 12px 32px; background: none; border: none; font-family: inherit;
+      font-size: 15px; font-weight: 600; color: var(--muted); cursor: pointer;
+      border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--accent); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .section-title {
+      font-size: 22px; font-weight: 700; color: var(--primary); margin: 36px 0 8px;
+      padding-bottom: 10px; border-bottom: 2px solid var(--accent);
+    }
+    .section-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+    .shot-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; margin-bottom: 20px; transition: box-shadow 0.2s;
+    }
+    .shot-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .shot-card h3 {
+      font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 4px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .shot-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 8px; background: var(--accent);
+      color: #fff; font-size: 14px; font-weight: 900; flex-shrink: 0;
+    }
+    .shot-card .purpose {
+      display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 16px;
+    }
+    .purpose-tag {
+      font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+    }
+    .tag-gbp { background: #dbeafe; color: #1e40af; }
+    .tag-ig { background: #fce7f3; color: #9d174d; }
+    .tag-hp { background: #d1fae5; color: #065f46; }
+    .tag-hpp { background: #fef3c7; color: #92400e; }
+
+    .shot-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .shot-detail-item { font-size: 13px; }
+    .shot-detail-item .detail-label {
+      font-weight: 700; color: var(--primary); display: block; margin-bottom: 2px; font-size: 12px;
+    }
+    .shot-detail-item .detail-value { color: var(--muted); }
+
+    .ng-box {
+      background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px;
+      padding: 12px 16px; margin-top: 16px; font-size: 12px; color: #991b1b;
+    }
+    .ng-box strong { display: block; margin-bottom: 4px; }
+
+    /* 声かけスクリプト */
+    .script-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; margin-bottom: 20px; transition: box-shadow 0.2s;
+    }
+    .script-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .script-card h3 {
+      font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 4px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .timing-badge {
+      display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px;
+      border-radius: 6px; background: #d1fae5; color: #065f46;
+    }
+    .timing-badge.best { background: #fef3c7; color: #92400e; }
+
+    .dialogue {
+      background: #f0f9ff; border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0;
+      padding: 16px; margin: 16px 0; font-size: 14px; line-height: 2;
+    }
+    .dialogue .speaker { font-weight: 700; color: var(--blue); font-size: 12px; margin-bottom: 4px; }
+
+    .flow-steps { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+    .flow-step {
+      display: flex; align-items: flex-start; gap: 12px; font-size: 13px;
+    }
+    .flow-step-num {
+      flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent2); color: #fff; display: flex; align-items: center;
+      justify-content: center; font-size: 11px; font-weight: 700;
+    }
+
+    .caution-box {
+      background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px;
+      padding: 12px 16px; margin-top: 12px; font-size: 12px; color: #991b1b;
+    }
+    .caution-box strong { display: block; margin-bottom: 4px; }
+    .tip-box {
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+      padding: 12px 16px; margin-top: 12px; font-size: 12px; color: #166534;
+    }
+    .tip-box strong { display: block; margin-bottom: 4px; }
+
+    footer {
+      text-align: center; padding: 40px 24px; color: var(--muted); font-size: 12px;
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+    @media print {
+      .hero { padding: 30px 20px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .tab-bar { display: none; }
+      .tab-content { display: block !important; }
+      .shot-card, .script-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px 30px; }
+      .hero h1 { font-size: 22px; }
+      .container { padding: 0 16px; }
+      .shot-detail { grid-template-columns: 1fr; }
+      .tab-btn { padding: 10px 16px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">SHOOTING GUIDE & SCRIPTS</div>
+    <h1>撮影指示書 & <span>声かけスクリプト</span></h1>
+    <p class="hero-sub">カブール 町田店 | GBP・Instagram・HP用の写真撮影ガイド + 口コミ依頼スクリプト</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="shooting">撮影指示書</button>
+    <button class="tab-btn" data-tab="script">声かけスクリプト</button>
+  </div>
+
+  <!-- 撮影指示書 -->
+  <div class="tab-content active" id="tab-shooting">
+
+    <div class="section-title">GBP・SNS用 撮影指示書（10カット）</div>
+    <p class="section-desc">スマートフォンでの撮影を前提としたガイドです。各カットの用途に合わせて撮影してください。</p>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">1</span> 店舗外観（昼）</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-gbp">GBP</span>
+        <span class="purpose-tag tag-hp">HP</span>
+        <span class="purpose-tag tag-hpp">ホットペッパー</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">正面やや下から。看板とドア全体が入る構図。通行人の少ない時間帯（10-11時頃）がベスト。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ライティング</span>
+          <span class="detail-value">自然光（曇天がベスト。直射日光は影が強くなるため避ける）</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">カメラ設定</span>
+          <span class="detail-value">広角モード（0.5x）。HDRオン。水平を取る（グリッド線表示推奨）</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">看板の文字がはっきり読めること。ゴミや自転車が映り込まないよう整理してから撮影。</span>
+        </div>
+      </div>
+      <div class="ng-box">
+        <strong>NG例</strong>
+        逆光で看板が見えない / 指や影が映り込む / 斜めに傾いている / 他店の看板が大きく映る
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">2</span> 店舗外観（夜）</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-gbp">GBP</span>
+        <span class="purpose-tag tag-ig">Instagram</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">正面。看板の照明が映える角度で。雨上がりの路面反射があるとさらに良い。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ライティング</span>
+          <span class="detail-value">店舗の照明を全点灯。ナイトモードで撮影。フラッシュはオフ。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">カメラ設定</span>
+          <span class="detail-value">ナイトモード。三脚またはスマホを壁に固定してブレ防止。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">温かみのある光で「癒しの空間」を演出。日没後30分〜1時間がゴールデンタイム。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">3</span> 施術ルーム全景</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-gbp">GBP</span>
+        <span class="purpose-tag tag-hp">HP</span>
+        <span class="purpose-tag tag-hpp">ホットペッパー</span>
+        <span class="purpose-tag tag-ig">Instagram</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">部屋の角から対角線方向に。広角（0.5x）で空間の広さを表現。ベッドが主役。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ライティング</span>
+          <span class="detail-value">間接照明で温かみを演出。蛍光灯の青白い光はNG。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">カメラ設定</span>
+          <span class="detail-value">広角モード。ポートレートモード不可（ボケすぎる）。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">タオルを綺麗に畳んで配置。アロマキャンドルやハーブオイルを添えると雰囲気UP。清潔感が最優先。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">4</span> 待合スペース</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-gbp">GBP</span>
+        <span class="purpose-tag tag-hp">HP</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">ソファやチェアが主役。お茶やウェルカムドリンクを添えるとホスピタリティが伝わる。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">雑誌は最新号に。パンフレットは整然と並べる。生花があればベスト。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">5</span> 施術風景（ツインマッサージ）</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-gbp">GBP</span>
+        <span class="purpose-tag tag-ig">Instagram</span>
+        <span class="purpose-tag tag-hpp">ホットペッパー</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">斜め上から俯瞰気味に。2人のセラピストの手が同時に映る構図が必須。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ライティング</span>
+          <span class="detail-value">間接照明。施術中の実際の明るさで撮影（暗すぎる場合はスマホのライト補助を壁に反射させる）。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">カメラ設定</span>
+          <span class="detail-value">動画の場合：横向き、手ブレ補正ON。15秒（リール用）/ 30秒（GBP用）/ 60秒（HP用）の3パターン撮影。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">モデルはスタッフまたは許可済みのお客様。お客様の顔は映さない（タオルで隠す）。手元とオイルの質感にフォーカス。</span>
+        </div>
+      </div>
+      <div class="ng-box">
+        <strong>NG例</strong>
+        お客様の顔が映っている / 生活感のあるものが映り込む / フラッシュ使用 / 動画が縦撮り（リール以外）
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">6</span> 施術の手元アップ</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-ig">Instagram</span>
+        <span class="purpose-tag tag-gbp">GBP</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">セラピストの手がお客様の体に触れている瞬間。オイルが光る質感を捉える。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">ネイルは清潔にカット。手荒れがないか確認。オイルの艶感が映える照明で。ポートレートモードで背景ぼかしも効果的。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">7</span> ビフォーアフター</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-ig">Instagram</span>
+        <span class="purpose-tag tag-hpp">ホットペッパー</span>
+        <span class="purpose-tag tag-hp">HP</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">同一角度・同一距離で撮影。壁にマーキングテープで立ち位置を固定。正面・横・背面の3アングル。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ライティング</span>
+          <span class="detail-value">Before/Afterで同一照明条件。蛍光灯（色温度固定）推奨。フラッシュ不使用。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">カメラ設定</span>
+          <span class="detail-value">1xモード固定。同じスマホ・同じ設定で統一。加工フィルター不使用。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">同じ服装（スポブラ+ショートパンツ推奨）。メジャーを使った採寸シーンもあると説得力UP。必ず書面で撮影・掲載許可を取得。</span>
+        </div>
+      </div>
+      <div class="ng-box">
+        <strong>NG例</strong>
+        Before/Afterで照明が違う / 服装が違う / 角度が違う / 加工・フィルター使用 / 許可なし
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">8</span> スタッフポートレート</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-gbp">GBP</span>
+        <span class="purpose-tag tag-hp">HP</span>
+        <span class="purpose-tag tag-ig">Instagram</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">上半身〜バストアップ。目線はカメラ。自然な笑顔。サロンの施術ルームを背景に。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">制服着用。髪を整える。ポートレートモードで背景を軽くぼかすとプロっぽい仕上がり。腕を組むポーズは避ける（威圧感）。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">9</span> 商品・オイル・ハーブ</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-ig">Instagram</span>
+        <span class="purpose-tag tag-gbp">GBP</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">フラットレイ（真上から）。白い布やウッドトレイの上に並べる。自然光推奨（窓際で撮影）。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">ラベルが正面を向くように。ハーブの葉やドライフラワーを添えるとインドエステの世界観が演出できる。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shot-card">
+      <h3><span class="shot-num">10</span> アメニティ・ドリンク</h3>
+      <div class="purpose">
+        <span class="purpose-tag tag-gbp">GBP</span>
+        <span class="purpose-tag tag-ig">Instagram</span>
+      </div>
+      <div class="shot-detail">
+        <div class="shot-detail-item">
+          <span class="detail-label">アングル</span>
+          <span class="detail-value">斜め45度から。ハーブティーやデトックスウォーターなど、施術後にお出しするドリンクを美しく。</span>
+        </div>
+        <div class="shot-detail-item">
+          <span class="detail-label">ポイント</span>
+          <span class="detail-value">ホスピタリティの高さを伝える一枚。ソーサーやコースターにこだわると高級感UP。</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 声かけスクリプト -->
+  <div class="tab-content" id="tab-script">
+
+    <div class="section-title">口コミ依頼 声かけスクリプト（5パターン）</div>
+    <p class="section-desc">口コミアシスト（アカウントID: 5900）のQRコードを使った自然な口コミ依頼の流れです。</p>
+
+    <div class="script-card">
+      <h3><span class="shot-num">1</span> 施術直後（最も効果的）</h3>
+      <span class="timing-badge best">成功率 最高</span>
+
+      <div class="dialogue">
+        <div class="speaker">セラピスト</div>
+        「お疲れ様でした！本日の施術はいかがでしたか？」
+      </div>
+      <div class="dialogue">
+        <div class="speaker">お客様が「気持ちよかった」「スッキリした」等と回答したら</div>
+        「ありがとうございます！そう言っていただけると本当に嬉しいです。
+        実は、お客様のそういったお声が私たちの励みになっておりまして...もしよろしければ、Googleの口コミでご感想をいただけると大変ありがたいのですが、お願いできますでしょうか？」
+      </div>
+      <div class="dialogue">
+        <div class="speaker">QRコード提示</div>
+        「こちらのQRコードを読み取っていただくと、すぐに口コミページに飛びます。1〜2分で書けますので、お着替えの後にでもお願いできれば幸いです。」
+      </div>
+
+      <div class="flow-steps">
+        <div class="flow-step"><span class="flow-step-num">1</span>施術終了の感想を聞く</div>
+        <div class="flow-step"><span class="flow-step-num">2</span>ポジティブな反応を確認</div>
+        <div class="flow-step"><span class="flow-step-num">3</span>「励みになる」と伝えてからお願い</div>
+        <div class="flow-step"><span class="flow-step-num">4</span>QRコードを提示</div>
+        <div class="flow-step"><span class="flow-step-num">5</span>お着替え中に書いてもらう</div>
+      </div>
+
+      <div class="tip-box">
+        <strong>成功のコツ</strong>
+        お客様の満足度が最も高い施術直後が最適。体の変化を一緒に確認した後だとさらに効果的。「お着替えの後」と時間の余裕を与えることで、押し付け感を軽減。
+      </div>
+      <div class="caution-box">
+        <strong>NGワード・NGアクション</strong>
+        「口コミを書いてください」と直接的に言わない / 「★5でお願いします」と評価を指定しない / 何度もしつこく頼まない / お客様が渋った場合はすぐに引く
+      </div>
+    </div>
+
+    <div class="script-card">
+      <h3><span class="shot-num">2</span> 会計時</h3>
+      <span class="timing-badge">自然な流れ</span>
+
+      <div class="dialogue">
+        <div class="speaker">スタッフ</div>
+        「本日はありがとうございました。お会計は○○円でございます。」
+        （会計処理中に）
+        「もしよろしければ、本日の施術のご感想をGoogleの口コミにいただけると嬉しいです。こちらにQRコードをご用意しておりますので、お時間のある時にでもお願いできれば幸いです。」
+      </div>
+
+      <div class="tip-box">
+        <strong>成功のコツ</strong>
+        レジ横やカウンターにQRコード付きのスタンドPOPを常設。「お時間のある時に」と添えることで強制感をなくす。カード決済で手持ち無沙汰になるタイミングが狙い目。
+      </div>
+    </div>
+
+    <div class="script-card">
+      <h3><span class="shot-num">3</span> リピーター来店時（3回目以降）</h3>
+      <span class="timing-badge">信頼関係あり</span>
+
+      <div class="dialogue">
+        <div class="speaker">セラピスト</div>
+        「いつもありがとうございます！○回目のご来店ですね。お体の変化はいかがですか？」
+        （変化を確認した後）
+        「素晴らしいですね！実は、○○様のように継続して通っていただいているお客様のお声が、初めてのお客様の参考になるんです。もしよろしければ、Googleの口コミにご感想を書いていただけませんか？」
+      </div>
+
+      <div class="tip-box">
+        <strong>成功のコツ</strong>
+        リピーターは信頼関係ができているため、依頼しやすい。「他のお客様の参考になる」という理由を伝えると、協力してもらいやすい。施術回数や通った期間を具体的に言及すると、口コミ内容も具体的になりやすい。
+      </div>
+    </div>
+
+    <div class="script-card">
+      <h3><span class="shot-num">4</span> 効果実感時（サイズダウン報告）</h3>
+      <span class="timing-badge best">感動の瞬間</span>
+
+      <div class="dialogue">
+        <div class="speaker">セラピスト</div>
+        「採寸の結果、ウエストが前回から○cm減っています！」
+        （お客様が喜んだら）
+        「本当に素晴らしい変化ですね！○○様の頑張りの成果です。この感動を、ぜひ口コミで共有していただけませんか？同じお悩みを持つ方の背中を押すことになると思います。」
+      </div>
+
+      <div class="tip-box">
+        <strong>成功のコツ</strong>
+        数値的な変化が出た瞬間は、お客様の感情が最もポジティブ。ビフォーアフター写真の撮影許可もこのタイミングで。「同じ悩みの方の参考に」という社会的意義を伝える。
+      </div>
+    </div>
+
+    <div class="script-card">
+      <h3><span class="shot-num">5</span> LINE/SMSフォローアップ（翌日）</h3>
+      <span class="timing-badge">フォロー</span>
+
+      <div class="dialogue">
+        <div class="speaker">LINE/SMSテンプレート</div>
+        「○○様、昨日はカブール町田店にお越しいただきありがとうございました。施術後のお体の調子はいかがでしょうか？
+
+もしよろしければ、施術のご感想をGoogleの口コミにお寄せいただけると大変励みになります。
+▼口コミはこちらから
+【口コミアシストURL】
+
+次回のご来店を心よりお待ちしております。」
+      </div>
+
+      <div class="tip-box">
+        <strong>成功のコツ</strong>
+        施術翌日の午前中に送信がベスト。お体の調子を気遣うメッセージと一緒に。URLを直接貼ることで、QRコードを撮り忘れた方もアクセス可能。
+      </div>
+      <div class="caution-box">
+        <strong>注意</strong>
+        LINE未登録の方には送らない / 頻繁に送らない（初回 or 節目の来店時のみ） / 必ず「もしよろしければ」の一言を添える
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>提供: シンパートナーズ</p>
+  <p style="margin-top:4px; font-size:11px; color:#9ca3af;">カブール 町田店 MEO対策支援ツール</p>
+</footer>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

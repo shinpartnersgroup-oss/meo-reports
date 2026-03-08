@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>口コミ返信テンプレート集 | カブール 町田店</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+    :root {
+      --primary: #1a1a2e;
+      --accent: #d4763c;
+      --accent2: #4a3728;
+      --gold: #c5a55a;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #10b981;
+      --red: #ef4444;
+      --orange: #f59e0b;
+      --blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+    .hero {
+      background: linear-gradient(135deg, #2c1810 0%, var(--accent2) 50%, #1a1a2e 100%);
+      color: #fff; padding: 60px 40px 50px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,118,60,0.2) 0%, transparent 70%); border-radius: 50%;
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; background: rgba(212,118,60,0.2); border: 1px solid rgba(212,118,60,0.4);
+      color: #e8a878; font-size: 12px; font-weight: 600; padding: 4px 16px; border-radius: 20px;
+      letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .hero h1 { font-size: 32px; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    .filter-bar {
+      display: flex; gap: 8px; flex-wrap: wrap; padding: 24px 0; position: sticky;
+      top: 0; background: var(--bg); z-index: 10; border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--card);
+      font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .section-heading {
+      font-size: 20px; font-weight: 700; color: var(--primary); margin: 40px 0 8px;
+      padding-bottom: 12px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 10px;
+    }
+    .section-heading .stars { font-size: 18px; }
+
+    .template-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 16px; transition: box-shadow 0.2s; position: relative;
+    }
+    .template-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .template-card h3 {
+      font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 4px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .template-card .scenario { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+    .template-card .reply-text {
+      font-size: 14px; line-height: 1.9; color: var(--text); background: #f9fafb;
+      border-radius: 8px; padding: 16px; border-left: 3px solid var(--accent); white-space: pre-wrap;
+    }
+    .template-card .keywords {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px;
+    }
+    .template-card .kw-tag {
+      font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px;
+      background: #fef3c7; color: #92400e;
+    }
+    .copy-btn {
+      position: absolute; top: 16px; right: 16px; padding: 8px 16px; border: 1px solid var(--accent);
+      border-radius: 8px; background: #fff; color: var(--accent); font-family: inherit;
+      font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--accent); color: #fff; }
+    .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); }
+
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; }
+    .badge-green { background: #d1fae5; color: #065f46; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-orange { background: #fef3c7; color: #92400e; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+
+    .usage-guide {
+      background: linear-gradient(135deg, #eff6ff 0%, #fff 100%); border: 1px solid #bfdbfe;
+      border-radius: 12px; padding: 24px; margin: 32px 0;
+    }
+    .usage-guide h3 { font-size: 16px; font-weight: 700; color: #1e40af; margin-bottom: 12px; }
+    .usage-guide ul { list-style: none; padding: 0; }
+    .usage-guide li { font-size: 13px; padding: 4px 0; padding-left: 20px; position: relative; color: #374151; }
+    .usage-guide li::before { content: ''; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; }
+
+    footer {
+      text-align: center; padding: 40px 24px; color: var(--muted); font-size: 12px;
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px 30px; }
+      .hero h1 { font-size: 24px; }
+      .container { padding: 0 16px; }
+      .template-card { padding: 16px; }
+      .copy-btn { position: static; display: block; width: 100%; margin-top: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">REVIEW REPLY TEMPLATES</div>
+    <h1>口コミ返信<span>テンプレート集</span></h1>
+    <p class="hero-sub">カブール 町田店 | 全14パターン対応 MEOキーワード最適配置済み</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="usage-guide">
+    <h3>使い方ガイド</h3>
+    <ul>
+      <li>【お客様名】の部分をお客様の表示名に置き換えてください</li>
+      <li>【施術名】は実際に受けた施術名に変更してください</li>
+      <li>「コピー」ボタンでクリップボードにコピーできます</li>
+      <li>MEOキーワード（黄色タグ）が自然に含まれています</li>
+      <li>同じ星数でもパターンを使い分けて、返信のバリエーションを出しましょう</li>
+    </ul>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="star5">★5</button>
+    <button class="filter-btn" data-filter="star4">★4</button>
+    <button class="filter-btn" data-filter="star3">★3</button>
+    <button class="filter-btn" data-filter="star12">★1-2</button>
+  </div>
+
+  <!-- ★5 高評価 -->
+  <div class="section-heading"><span class="stars">★★★★★</span> 高評価（5つ星）返信テンプレート</div>
+
+  <div class="template-card" data-category="star5">
+    <h3><span class="badge badge-green">★5</span> パターン1: 初回来店のお客様</h3>
+    <p class="scenario">シーン: 初めてご来店いただき、高評価をくださったお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、この度はカブール町田店にご来店いただき、また素敵な口コミをいただきまして誠にありがとうございます。
+
+初めてのインドエステを気に入っていただけたようで、スタッフ一同大変嬉しく思っております。当店のオールハンド施術は、お一人おひとりの体質やお悩みに合わせて丁寧にアプローチさせていただいております。
+
+次回はぜひ当店自慢の痩身コースもお試しください。【お客様名】様のまたのご来店を心よりお待ちしております。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">インドエステ</span>
+      <span class="kw-tag">オールハンド</span>
+      <span class="kw-tag">痩身</span>
+    </div>
+  </div>
+
+  <div class="template-card" data-category="star5">
+    <h3><span class="badge badge-green">★5</span> パターン2: リピーターのお客様</h3>
+    <p class="scenario">シーン: 複数回ご来店いただいている常連のお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、いつもカブール町田店をご利用いただきありがとうございます。温かい口コミを頂戴し、スタッフ一同感激しております。
+
+継続して通っていただくことで、ボディメイクの効果をより実感いただけているとのこと、大変嬉しく存じます。【お客様名】様の理想のお体づくりを、これからもオールハンドの技術で全力でサポートさせていただきます。
+
+今後ともカブール町田店をどうぞよろしくお願いいたします。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">ボディメイク</span>
+      <span class="kw-tag">オールハンド</span>
+    </div>
+  </div>
+
+  <div class="template-card" data-category="star5">
+    <h3><span class="badge badge-green">★5</span> パターン3: 施術効果に言及</h3>
+    <p class="scenario">シーン: サイズダウンや体の変化を実感してくださったお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、嬉しいお言葉をありがとうございます！
+
+施術後のお体の変化を実感していただけたとのこと、セラピスト冥利に尽きます。当店の痩身エステは、インド伝統のアーユルヴェーダ理論に基づいた手技で、体の内側からアプローチしていきます。
+
+回数を重ねるごとに、さらにスリミング効果を感じていただけるかと存じます。【お客様名】様の目標達成まで、しっかりとサポートさせていただきますので、引き続きよろしくお願いいたします。</div>
+    <div class="keywords">
+      <span class="kw-tag">痩身エステ</span>
+      <span class="kw-tag">インド</span>
+      <span class="kw-tag">スリミング</span>
+    </div>
+  </div>
+
+  <div class="template-card" data-category="star5">
+    <h3><span class="badge badge-green">★5</span> パターン4: 接客・雰囲気を称賛</h3>
+    <p class="scenario">シーン: スタッフの対応やサロンの雰囲気を褒めてくださったお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、カブール町田店の雰囲気やスタッフの対応についてお褒めの言葉をいただき、誠にありがとうございます。
+
+お客様にリラックスしていただける空間づくりは、当店が特に大切にしていることのひとつです。町田エリアでインドエステを通じて、日常から離れた癒しの時間をお過ごしいただけるよう、これからも努めてまいります。
+
+次回は神業ツインマッサージもぜひご体験ください。二人のセラピストによる同時施術で、極上のリラクゼーションをお届けいたします。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田 エステ</span>
+      <span class="kw-tag">インドエステ</span>
+      <span class="kw-tag">ツインマッサージ</span>
+    </div>
+  </div>
+
+  <!-- ★4 高評価 -->
+  <div class="section-heading"><span class="stars">★★★★☆</span> 高評価（4つ星）返信テンプレート</div>
+
+  <div class="template-card" data-category="star4">
+    <h3><span class="badge badge-blue">★4</span> パターン5: 効果実感＋改善期待</h3>
+    <p class="scenario">シーン: 概ね満足だが、もう少し効果を期待しているお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、カブール町田店にご来店いただきありがとうございます。また、貴重なご意見をいただき感謝いたします。
+
+オールハンドの痩身施術を気に入っていただけたとのこと、嬉しく思います。さらなる効果を実感いただくためには、お体の状態に合わせた施術プランのご提案も可能でございます。
+
+次回ご来店の際に、担当セラピストよりお体の変化に合わせた最適なコースをご案内させていただきます。【お客様名】様のご来店をお待ちしております。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">オールハンド</span>
+      <span class="kw-tag">痩身</span>
+    </div>
+  </div>
+
+  <div class="template-card" data-category="star4">
+    <h3><span class="badge badge-blue">★4</span> パターン6: 雰囲気好印象</h3>
+    <p class="scenario">シーン: サロンの雰囲気は気に入ったが、★4評価のお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、ご来店ありがとうございます。当店の雰囲気を気に入っていただけたこと、大変嬉しく存じます。
+
+カブール町田店では、インドエステならではの温かみのある空間で、お客様にくつろいでいただけるよう心がけております。ボディメイクの効果だけでなく、心身ともにリフレッシュしていただけるサロンを目指しております。
+
+★5に近づけるよう、さらにサービスの向上に努めてまいります。またのお越しをお待ちしております。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">インドエステ</span>
+      <span class="kw-tag">ボディメイク</span>
+    </div>
+  </div>
+
+  <div class="template-card" data-category="star4">
+    <h3><span class="badge badge-blue">★4</span> パターン7: コスパ言及</h3>
+    <p class="scenario">シーン: 施術には満足だが、価格について言及しているお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、カブール町田店をご利用いただきありがとうございます。
+
+施術にご満足いただけたとのこと、ありがとうございます。当店では、セラピストが一つひとつ丁寧にオールハンドで施術を行い、お客様のお悩みに寄り添ったスリミングケアをご提供しております。
+
+お得な回数券やキャンペーンもご用意しておりますので、次回ご来店の際にお気軽にスタッフまでお尋ねください。今後ともどうぞよろしくお願いいたします。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">オールハンド</span>
+      <span class="kw-tag">スリミング</span>
+    </div>
+  </div>
+
+  <!-- ★3 中評価 -->
+  <div class="section-heading"><span class="stars">★★★☆☆</span> 中評価（3つ星）返信テンプレート</div>
+
+  <div class="template-card" data-category="star3">
+    <h3><span class="badge badge-orange">★3</span> パターン8: 改善要望あり</h3>
+    <p class="scenario">シーン: 具体的な改善点を指摘してくださったお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、カブール町田店にご来店いただきありがとうございます。また、率直なご意見をお寄せいただき感謝いたします。
+
+ご指摘いただいた点について、スタッフ間で共有し、改善に取り組んでまいります。当店はお客様にご満足いただけるインドエステサロンを目指し、日々サービスの向上に努めております。
+
+よろしければ改めて施術をお試しいただけましたら幸いです。ご不明点がございましたら、お気軽にお電話でもご相談くださいませ。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">インドエステ</span>
+    </div>
+  </div>
+
+  <div class="template-card" data-category="star3">
+    <h3><span class="badge badge-orange">★3</span> パターン9: 効果をまだ実感できず</h3>
+    <p class="scenario">シーン: 1回の施術で大きな効果を感じられなかったお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、この度はカブール町田店にご来店いただきありがとうございます。
+
+痩身の効果をまだ十分に実感いただけなかったとのこと、申し訳ございません。当店のオールハンドによるボディメイクは、継続していただくことでより効果を実感いただけるものでございます。お体の状態やお悩みに合わせて、最適な施術プランをご提案させていただくことも可能です。
+
+次回ご来店の際には、より丁寧なカウンセリングを行い、【お客様名】様に合ったアプローチをご提案いたします。お気軽にご相談くださいませ。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">痩身</span>
+      <span class="kw-tag">オールハンド</span>
+      <span class="kw-tag">ボディメイク</span>
+    </div>
+  </div>
+
+  <div class="template-card" data-category="star3">
+    <h3><span class="badge badge-orange">★3</span> パターン10: 待ち時間・予約への言及</h3>
+    <p class="scenario">シーン: 予約や待ち時間について不満があるお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、ご来店ありがとうございます。お待たせしてしまい、大変申し訳ございませんでした。
+
+お客様の貴重なお時間を無駄にすることのないよう、予約管理の改善に取り組んでまいります。町田でエステをお探しの皆様に、施術だけでなくサービス全体でご満足いただけるサロンを目指しております。
+
+ご迷惑をおかけしましたが、次回はよりスムーズにご案内できるよう努めます。またのご来店を心よりお待ちしております。</div>
+    <div class="keywords">
+      <span class="kw-tag">町田 エステ</span>
+    </div>
+  </div>
+
+  <!-- ★1-2 低評価 -->
+  <div class="section-heading"><span class="stars">★★☆☆☆</span> 低評価（1-2つ星）返信テンプレート</div>
+
+  <div class="template-card" data-category="star12">
+    <h3><span class="badge badge-red">★1-2</span> パターン11: 接客への不満</h3>
+    <p class="scenario">シーン: スタッフの接客態度に不満を感じたお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、この度はカブール町田店にご来店いただいたにもかかわらず、ご不快な思いをさせてしまい誠に申し訳ございません。
+
+スタッフの対応につきまして、真摯に受け止め、接客品質の改善に直ちに取り組んでまいります。お客様に安心してお過ごしいただける空間を提供することが、私どもの最も大切にすべきことと考えております。
+
+差し支えなければ、詳しいご状況をお電話にてお聞かせいただけますと幸いです。今後このようなことがないよう、スタッフ教育を徹底してまいります。</div>
+    <div class="keywords"></div>
+  </div>
+
+  <div class="template-card" data-category="star12">
+    <h3><span class="badge badge-red">★1-2</span> パターン12: 効果への不満</h3>
+    <p class="scenario">シーン: 施術の効果に納得がいかなかったお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、この度は貴重なお時間をいただきながら、ご期待に添えず大変申し訳ございません。
+
+施術の効果については、お客様のお体の状態や生活習慣により個人差がございます。しかしながら、ご満足いただけなかった点について、私どもの説明やカウンセリングが不十分であった可能性がございます。
+
+よろしければ、改めてお体の状態を詳しくカウンセリングさせていただき、最適なアプローチをご提案させていただければと存じます。お電話でもご相談を承っておりますので、お気軽にお問い合わせくださいませ。</div>
+    <div class="keywords"></div>
+  </div>
+
+  <div class="template-card" data-category="star12">
+    <h3><span class="badge badge-red">★1-2</span> パターン13: 予約トラブル</h3>
+    <p class="scenario">シーン: 予約に関するトラブルがあったお客様への返信</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、この度はご予約に関しましてご迷惑をおかけし、大変申し訳ございません。
+
+お客様にスムーズにご来店いただけるよう、予約システムおよびスタッフ間の連携体制を早急に見直してまいります。
+
+大変恐れ入りますが、詳細についてお電話にてお伺いできますと、迅速に対応させていただけます。今後このようなことが起きないよう、再発防止に努めてまいります。ご不便をおかけしましたこと、重ねてお詫び申し上げます。</div>
+    <div class="keywords"></div>
+  </div>
+
+  <div class="template-card" data-category="star12">
+    <h3><span class="badge badge-red">★1-2</span> パターン14: 一般的なクレーム</h3>
+    <p class="scenario">シーン: 全般的に不満を感じているお客様への返信（汎用）</p>
+    <button class="copy-btn" onclick="copyText(this)">コピー</button>
+    <div class="reply-text">【お客様名】様、この度はご来店いただいたにもかかわらず、ご満足いただけるサービスをご提供できず、誠に申し訳ございません。
+
+いただいたご意見を真摯に受け止め、サービス全体の品質向上に取り組んでまいります。お客様のお声は、私どもにとって最も重要な改善の指針でございます。
+
+差し支えなければ、具体的なご状況をお電話やメールにてお聞かせいただけますと幸いです。今後ともご指導いただけますよう、何卒よろしくお願い申し上げます。</div>
+    <div class="keywords"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>提供: シンパートナーズ</p>
+  <p style="margin-top:4px; font-size:11px; color:#9ca3af;">カブール 町田店 MEO対策支援ツール</p>
+</footer>
+
+<script>
+function copyText(btn) {
+  const card = btn.closest('.template-card');
+  const text = card.querySelector('.reply-text').textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'コピー完了';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'コピー';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.template-card').forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('.section-heading').forEach(heading => {
+      const next = [];
+      let el = heading.nextElementSibling;
+      while (el && !el.classList.contains('section-heading')) {
+        if (el.classList.contains('template-card')) next.push(el);
+        el = el.nextElementSibling;
+      }
+      const anyVisible = next.some(c => c.style.display !== 'none');
+      heading.style.display = (filter === 'all' || anyVisible) ? '' : 'none';
+    });
+  });
+});
+</script>
+
+</body>
+</html>

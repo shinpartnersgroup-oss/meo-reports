@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBP Q&A テンプレート | カブール 町田店</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+    :root {
+      --primary: #1a1a2e;
+      --accent: #d4763c;
+      --accent2: #4a3728;
+      --gold: #c5a55a;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #10b981;
+      --blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+    .hero {
+      background: linear-gradient(135deg, #2c1810 0%, var(--accent2) 50%, #1a1a2e 100%);
+      color: #fff; padding: 60px 40px 50px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,118,60,0.2) 0%, transparent 70%); border-radius: 50%;
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; background: rgba(212,118,60,0.2); border: 1px solid rgba(212,118,60,0.4);
+      color: #e8a878; font-size: 12px; font-weight: 600; padding: 4px 16px; border-radius: 20px;
+      letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .hero h1 { font-size: 32px; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    .guide-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #fff 100%); border: 1px solid #bfdbfe;
+      border-radius: 12px; padding: 24px; margin: 32px 0;
+    }
+    .guide-box h3 { font-size: 16px; font-weight: 700; color: #1e40af; margin-bottom: 8px; }
+    .guide-box p { font-size: 13px; color: #374151; }
+    .guide-box ol { font-size: 13px; color: #374151; padding-left: 20px; margin-top: 8px; }
+    .guide-box li { padding: 2px 0; }
+
+    .qa-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; margin-bottom: 20px; transition: box-shadow 0.2s;
+    }
+    .qa-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .qa-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 8px; background: var(--accent);
+      color: #fff; font-size: 14px; font-weight: 900; margin-bottom: 12px;
+    }
+    .qa-question {
+      font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 16px;
+      padding-left: 16px; border-left: 3px solid var(--accent);
+    }
+    .qa-answer {
+      font-size: 14px; line-height: 1.9; background: #f9fafb; border-radius: 8px;
+      padding: 16px; border-left: 3px solid var(--blue); white-space: pre-wrap; margin-bottom: 12px;
+    }
+    .qa-keywords {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .kw-tag {
+      font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px;
+      background: #fef3c7; color: #92400e;
+    }
+    .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .copy-btn {
+      padding: 8px 16px; border: 1px solid var(--accent); border-radius: 8px; background: #fff;
+      color: var(--accent); font-family: inherit; font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--accent); color: #fff; }
+    .copy-btn.copied { background: var(--green); color: #fff; border-color: var(--green); }
+
+    footer {
+      text-align: center; padding: 40px 24px; color: var(--muted); font-size: 12px;
+      border-top: 1px solid var(--border); margin-top: 60px;
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px 30px; }
+      .hero h1 { font-size: 24px; }
+      .container { padding: 0 16px; }
+      .qa-card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">GBP Q&A TEMPLATES</div>
+    <h1>GBP <span>Q&A テンプレート</span></h1>
+    <p class="hero-sub">カブール 町田店 | Googleビジネスプロフィール Q&A登録用 5件</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="guide-box">
+    <h3>GBP Q&Aの登録方法</h3>
+    <p>Googleビジネスプロフィールの「質問と回答」セクションに、オーナーとして事前にQ&Aを登録しておくことで、お客様の疑問を解消し、来店率を向上させます。</p>
+    <ol>
+      <li>Googleマップでカブール町田店のプロフィールを検索</li>
+      <li>「質問する」をクリックして質問テキストを投稿</li>
+      <li>投稿された質問に対してオーナーとして回答を投稿</li>
+      <li>各Q&Aの「いいね」を押して上位表示を促進</li>
+    </ol>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-num">1</div>
+    <div class="qa-question">インドエステとは何ですか？普通のエステと何が違いますか？</div>
+    <div class="qa-answer">インドエステは、インドの伝統医学「アーユルヴェーダ」に基づいたエステティック施術です。
+
+カブール町田店のインドエステの特徴は以下の3点です。
+
+①オールハンド施術：機械を一切使用せず、セラピストの手のみで施術を行います。手の温もりと繊細なタッチで、体の深部にアプローチします。
+
+②天然ハーブオイル：インドから直輸入した天然由来のハーブオイルを使用。体質に合わせたオイルを選定し、体の巡りを整えます。
+
+③体質別アプローチ：アーユルヴェーダの体質理論に基づき、お一人おひとりに最適な施術をご提案します。
+
+一般的なエステサロンでは機械を使用することが多いですが、当店は全てオールハンドで行うため、体への負担が少なく、深いリラクゼーション効果も得られます。
+
+町田で本格的なインドエステをお探しの方は、ぜひカブール町田店にお越しください。</div>
+    <div class="qa-keywords">
+      <span class="kw-tag">インドエステ</span>
+      <span class="kw-tag">オールハンド</span>
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">アーユルヴェーダ</span>
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText(this, 'question')">質問をコピー</button>
+      <button class="copy-btn" onclick="copyText(this, 'answer')">回答をコピー</button>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-num">2</div>
+    <div class="qa-question">神業ツインマッサージとは何ですか？</div>
+    <div class="qa-answer">神業ツインマッサージは、カブール町田店の人気No.1メニューです。
+
+2人のセラピストが息を合わせて同時に全身をオールハンドで施術する、当店独自の特別メニューです。
+
+通常の施術では1人のセラピストが順番に各部位をケアしますが、ツインマッサージでは2人が同時にアプローチするため、以下のメリットがあります。
+
+・短時間で全身を効率的にケアできる
+・2倍のハンドパワーで深いコリやむくみにアプローチ
+・全身が同時にほぐされる究極のリラクゼーション体験
+
+痩身効果とリラクゼーション効果を同時に高いレベルで実感いただける、町田エリアではカブール町田店だけの特別な施術です。
+
+初めての方は体験コースもございますので、お気軽にお問い合わせください。</div>
+    <div class="qa-keywords">
+      <span class="kw-tag">ツインマッサージ</span>
+      <span class="kw-tag">オールハンド</span>
+      <span class="kw-tag">町田 エステ</span>
+      <span class="kw-tag">痩身</span>
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText(this, 'question')">質問をコピー</button>
+      <button class="copy-btn" onclick="copyText(this, 'answer')">回答をコピー</button>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-num">3</div>
+    <div class="qa-question">痩身エステは何回くらいで効果が出ますか？</div>
+    <div class="qa-answer">痩身の効果には個人差がございますが、多くのお客様が以下のようにお感じいただいております。
+
+■ 1回目：施術直後にスッキリ感・軽さを実感。むくみの改善やサイズダウンを感じる方も多いです。
+
+■ 3〜5回目：お体のラインに変化が現れ始めます。「スカートがゆるくなった」「友達に痩せた？と聞かれた」などのお声をよくいただきます。
+
+■ 8〜10回目：体質自体が変わり、太りにくいカラダに近づいていきます。
+
+カブール町田店では、インドエステ伝統のオールハンド施術で、体の巡りを整えながら痩身にアプローチします。カウンセリングで目標をお伺いし、最適な回数と頻度をご提案いたします。
+
+まずは初回体験コースでお気軽にお試しください。</div>
+    <div class="qa-keywords">
+      <span class="kw-tag">痩身 エステ</span>
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">オールハンド</span>
+      <span class="kw-tag">インドエステ</span>
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText(this, 'question')">質問をコピー</button>
+      <button class="copy-btn" onclick="copyText(this, 'answer')">回答をコピー</button>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-num">4</div>
+    <div class="qa-question">予約方法を教えてください</div>
+    <div class="qa-answer">カブール町田店のご予約は、以下の方法で承っております。
+
+①お電話：【電話番号】
+ 営業時間内にお気軽にお電話ください。空き状況をすぐにご確認いただけます。
+
+②ホットペッパービューティー：
+ 24時間いつでもオンラインでご予約いただけます。初回限定のお得なクーポンもございます。
+
+③LINE：
+ 公式LINEアカウントからもご予約・お問い合わせいただけます。お得な情報も配信中です。
+
+初めての方は、まず体験コースでインドエステのオールハンド施術をお試しいただくことをおすすめいたします。
+
+カウンセリングでお悩みをお伺いした上で、最適なメニューをご提案いたします。皆様のご来店をお待ちしております。</div>
+    <div class="qa-keywords">
+      <span class="kw-tag">町田</span>
+      <span class="kw-tag">インドエステ</span>
+      <span class="kw-tag">オールハンド</span>
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText(this, 'question')">質問をコピー</button>
+      <button class="copy-btn" onclick="copyText(this, 'answer')">回答をコピー</button>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-num">5</div>
+    <div class="qa-question">駐車場はありますか？アクセス方法を教えてください</div>
+    <div class="qa-answer">カブール町田店へのアクセスをご案内いたします。
+
+■ 電車でお越しの場合
+JR横浜線・小田急線「町田駅」より徒歩圏内です。
+
+■ お車でお越しの場合
+専用駐車場はございませんが、近隣にコインパーキングが複数ございます。
+
+・タイムズ町田○○（徒歩1分）
+・三井のリパーク町田○○（徒歩2分）
+
+町田エリアで本格的なインドエステ・痩身をお探しの方は、ぜひカブール町田店にお越しください。アーユルヴェーダに基づくオールハンドの施術で、お客様の理想のカラダづくりをサポートいたします。
+
+ご不明点がございましたら、お気軽にお電話でお問い合わせください。</div>
+    <div class="qa-keywords">
+      <span class="kw-tag">町田 エステ</span>
+      <span class="kw-tag">インドエステ</span>
+      <span class="kw-tag">痩身</span>
+      <span class="kw-tag">オールハンド</span>
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText(this, 'question')">質問をコピー</button>
+      <button class="copy-btn" onclick="copyText(this, 'answer')">回答をコピー</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>提供: シンパートナーズ</p>
+  <p style="margin-top:4px; font-size:11px; color:#9ca3af;">カブール 町田店 MEO対策支援ツール</p>
+</footer>
+
+<script>
+function copyText(btn, type) {
+  const card = btn.closest('.qa-card');
+  const el = type === 'question' ? card.querySelector('.qa-question') : card.querySelector('.qa-answer');
+  const text = el.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'コピー完了';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

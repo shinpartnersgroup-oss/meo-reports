@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アプローチブック | カブール 町田店</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+    :root {
+      --primary: #1a1a2e;
+      --accent: #d4763c;
+      --accent2: #4a3728;
+      --gold: #c5a55a;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #10b981;
+      --blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+
+    .page-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; background: var(--primary);
+      display: flex; overflow-x: auto; z-index: 100; padding: 0;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+    }
+    .page-nav button {
+      flex-shrink: 0; padding: 12px 16px; background: none; border: none;
+      color: rgba(255,255,255,0.6); font-family: inherit; font-size: 11px; font-weight: 600;
+      cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .page-nav button:hover { color: #fff; }
+    .page-nav button.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    .page { display: none; min-height: 100vh; padding-bottom: 60px; }
+    .page.active { display: block; }
+
+    /* Cover Page */
+    .cover {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #2c1810 0%, var(--accent2) 40%, #1a1a2e 100%);
+      color: #fff; text-align: center; position: relative; overflow: hidden;
+    }
+    .cover::before {
+      content: ''; position: absolute; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(197,165,90,0.1) 0%, transparent 70%);
+      top: -200px; right: -200px;
+    }
+    .cover-inner { position: relative; z-index: 1; padding: 40px; }
+    .cover-logo { font-size: 14px; letter-spacing: 4px; color: var(--gold); margin-bottom: 24px; font-weight: 600; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.3; margin-bottom: 16px; }
+    .cover h1 span { color: var(--gold); }
+    .cover .subtitle { font-size: 16px; color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 40px; }
+    .cover .divider { width: 60px; height: 2px; background: var(--gold); margin: 0 auto 20px; }
+    .cover .store-name { font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.8); }
+
+    /* Content Pages */
+    .page-header {
+      background: linear-gradient(135deg, #2c1810 0%, var(--accent2) 100%);
+      color: #fff; padding: 40px; position: relative;
+    }
+    .page-header .page-num {
+      font-size: 60px; font-weight: 900; color: rgba(255,255,255,0.08);
+      position: absolute; right: 40px; top: 20px;
+    }
+    .page-header h2 { font-size: 26px; font-weight: 700; position: relative; z-index: 1; }
+    .page-header p { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; position: relative; z-index: 1; }
+
+    .page-body { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 16px; transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .card h3 { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--muted); }
+
+    .philosophy-text { font-size: 18px; font-weight: 300; line-height: 2.2; color: var(--accent2); text-align: center; padding: 32px 0; }
+    .philosophy-text strong { font-weight: 700; color: var(--accent); }
+
+    /* Checklist */
+    .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .check-group h4 { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .check-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+      margin-bottom: 8px; cursor: pointer; font-size: 13px; transition: all 0.2s;
+    }
+    .check-item:hover { border-color: var(--accent); }
+    .check-item input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px; }
+    .check-item.checked { background: #fdf6f0; border-color: var(--accent); }
+    .check-result {
+      background: linear-gradient(135deg, #fdf6f0 0%, #fff 100%); border: 2px solid var(--accent);
+      border-radius: 12px; padding: 24px; margin-top: 24px; text-align: center; display: none;
+    }
+    .check-result h3 { color: var(--accent); font-size: 18px; margin-bottom: 8px; }
+    .check-result p { font-size: 14px; color: var(--text); }
+
+    /* Dosha */
+    .dosha-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .dosha-card { border-radius: 12px; padding: 24px; text-align: center; }
+    .dosha-card.vata { background: #eff6ff; border: 1px solid #bfdbfe; }
+    .dosha-card.pitta { background: #fef2f2; border: 1px solid #fecaca; }
+    .dosha-card.kapha { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .dosha-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .dosha-card .icon { font-size: 32px; margin-bottom: 8px; }
+    .dosha-card p { font-size: 12px; text-align: left; }
+
+    /* Menu */
+    .menu-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 16px; display: flex; gap: 20px; align-items: flex-start;
+    }
+    .menu-icon {
+      width: 60px; height: 60px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 28px;
+    }
+    .menu-icon.slim { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+    .menu-icon.detox { background: linear-gradient(135deg, #d1fae5, #6ee7b7); }
+    .menu-icon.facial { background: linear-gradient(135deg, #fce7f3, #f9a8d4); }
+    .menu-icon.bridal { background: linear-gradient(135deg, #ede9fe, #c4b5fd); }
+    .menu-content h3 { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .menu-content .time { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+    .menu-content p { font-size: 13px; color: var(--muted); }
+    .menu-content .recommend { font-size: 11px; color: var(--green); font-weight: 600; margin-top: 6px; }
+
+    /* Twin Massage */
+    .twin-hero {
+      background: linear-gradient(135deg, #fdf6f0 0%, #fff 100%); border: 2px solid var(--accent);
+      border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 24px;
+    }
+    .twin-hero h3 { font-size: 22px; font-weight: 900; color: var(--accent); margin-bottom: 8px; }
+    .twin-hero p { font-size: 14px; color: var(--muted); }
+    .twin-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .twin-box { border-radius: 12px; padding: 20px; }
+    .twin-box.normal { background: #f3f4f6; border: 1px solid var(--border); }
+    .twin-box.twin { background: #fef3c7; border: 2px solid var(--gold); }
+    .twin-box h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .twin-box ul { list-style: none; font-size: 13px; }
+    .twin-box li { padding: 3px 0; }
+
+    /* Flow */
+    .flow-timeline { position: relative; padding-left: 40px; }
+    .flow-timeline::before {
+      content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: var(--accent);
+    }
+    .flow-step {
+      position: relative; padding-bottom: 28px;
+    }
+    .flow-step:last-child { padding-bottom: 0; }
+    .flow-dot {
+      position: absolute; left: -40px; top: 4px; width: 32px; height: 32px; border-radius: 50%;
+      background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; z-index: 1;
+    }
+    .flow-step h4 { font-size: 15px; font-weight: 700; color: var(--primary); }
+    .flow-step .flow-time { font-size: 12px; color: var(--accent); font-weight: 600; }
+    .flow-step p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    /* BA */
+    .ba-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 16px;
+    }
+    .ba-card h4 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .ba-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+    .ba-stat {
+      background: #fdf6f0; border-radius: 8px; padding: 12px 16px; text-align: center; flex: 1; min-width: 100px;
+    }
+    .ba-stat .num { font-size: 22px; font-weight: 900; color: var(--accent); }
+    .ba-stat .label { font-size: 11px; color: var(--muted); }
+
+    /* Testimonial */
+    .testimonial {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 16px; position: relative;
+    }
+    .testimonial::before {
+      content: '\201C'; font-size: 48px; color: var(--accent); opacity: 0.3;
+      position: absolute; top: 8px; left: 16px; font-family: serif;
+    }
+    .testimonial .quote { font-size: 14px; font-style: italic; padding-left: 28px; margin-bottom: 8px; }
+    .testimonial .author { font-size: 12px; color: var(--muted); text-align: right; }
+
+    /* Pricing */
+    .price-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 16px; text-align: center;
+    }
+    .price-card.highlight { border: 2px solid var(--accent); background: linear-gradient(135deg, #fdf6f0, #fff); }
+    .price-card h4 { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .price-card .price { font-size: 28px; font-weight: 900; color: var(--accent); }
+    .price-card .price-note { font-size: 12px; color: var(--muted); }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      margin-bottom: 12px; overflow: hidden;
+    }
+    .faq-q {
+      padding: 16px 24px; font-size: 15px; font-weight: 700; color: var(--primary);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-q::before { content: 'Q.'; color: var(--accent); font-weight: 900; margin-right: 8px; }
+    .faq-q .arrow { transition: transform 0.2s; color: var(--muted); }
+    .faq-a {
+      display: none; padding: 0 24px 16px; font-size: 14px; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    .faq-a p { padding-top: 12px; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+
+    footer { text-align: center; padding: 40px 24px 80px; color: var(--muted); font-size: 12px; }
+
+    @media (max-width: 768px) {
+      .checklist-grid, .dosha-cards, .twin-compare { grid-template-columns: 1fr; }
+      .menu-card { flex-direction: column; }
+      .cover h1 { font-size: 28px; }
+      .page-header { padding: 30px 20px; }
+      .page-header .page-num { font-size: 40px; right: 20px; }
+      .page-body { padding: 24px 16px; }
+      .page-nav button { padding: 10px 12px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="page-nav">
+  <button class="active" data-page="cover">TOP</button>
+  <button data-page="p1">理念</button>
+  <button data-page="p2">お悩み</button>
+  <button data-page="p3">インドエステ</button>
+  <button data-page="p4">メニュー</button>
+  <button data-page="p5">ツイン</button>
+  <button data-page="p6">施術の流れ</button>
+  <button data-page="p7">事例</button>
+  <button data-page="p8">お客様の声</button>
+  <button data-page="p9">料金</button>
+  <button data-page="p10">Q&A</button>
+</nav>
+
+<!-- Cover -->
+<div class="page active" id="cover">
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-logo">APPROACH BOOK</div>
+      <h1>あなたの<span>「なりたい」</span>を<br>叶えるために</h1>
+      <p class="subtitle">インドエステ専門サロン カウンセリングガイド</p>
+      <div class="divider"></div>
+      <p class="store-name">カブール 町田店</p>
+    </div>
+  </div>
+</div>
+
+<!-- Page 1: 理念 -->
+<div class="page" id="p1">
+  <div class="page-header">
+    <span class="page-num">01</span>
+    <h2>カブールの理念</h2>
+    <p>インドエステの歴史と「手」にこだわる理由</p>
+  </div>
+  <div class="page-body">
+    <div class="philosophy-text">
+      5000年の歴史を持つインド伝統医学<br>
+      <strong>アーユルヴェーダ</strong><br><br>
+      その叡智を現代のボディケアに活かし<br>
+      <strong>「手の力」</strong>だけで<br>
+      お客様の美と健康をサポートする<br><br>
+      それが、カブールの使命です
+    </div>
+    <div class="card">
+      <h3>なぜ「オールハンド」にこだわるのか</h3>
+      <p>機械では感じ取れない、お体の微妙な変化。コリの深さ、むくみの度合い、筋肉の緊張。セラピストの指先は、それらを瞬時に察知し、最適な力加減で応えます。手の温もりは、体だけでなく心も解きほぐします。だから私たちは、すべてをオールハンドで行います。</p>
+    </div>
+    <div class="card">
+      <h3>インドエステの歴史</h3>
+      <p>インドエステのルーツは、紀元前3000年頃にまで遡ります。アーユルヴェーダは「生命の科学」を意味し、WHO（世界保健機関）にも認められた医学体系です。天然のハーブオイルを用いた施術は、古代インドの王族の美容法として発展し、現代に受け継がれています。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Page 2: お悩みチェックリスト -->
+<div class="page" id="p2">
+  <div class="page-header">
+    <span class="page-num">02</span>
+    <h2>お悩みチェックリスト</h2>
+    <p>当てはまる項目をチェックしてください</p>
+  </div>
+  <div class="page-body">
+    <div class="checklist-grid">
+      <div class="check-group">
+        <h4>体型のお悩み</h4>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> お腹まわりが気になる</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 二の腕のたるみ</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 太ももが太い</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 背中のお肉</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> ヒップラインが気になる</label>
+      </div>
+      <div class="check-group">
+        <h4>肌・体質のお悩み</h4>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> セルライトが目立つ</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> むくみやすい</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 冷え性</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 肌のたるみ・ハリ不足</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 便秘がち</label>
+      </div>
+      <div class="check-group">
+        <h4>生活習慣</h4>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 運動不足</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 食生活が乱れがち</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> ストレスが多い</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 睡眠の質が悪い</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> デスクワーク中心</label>
+      </div>
+      <div class="check-group">
+        <h4>過去の経験</h4>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> ダイエットが続かない</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> リバウンドした経験がある</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> エステに満足できなかった</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 機械のエステが苦手</label>
+        <label class="check-item"><input type="checkbox" onchange="updateCheck()"> 自己流ケアで限界を感じる</label>
+      </div>
+    </div>
+    <div class="check-result" id="checkResult">
+      <h3 id="resultTitle"></h3>
+      <p id="resultText"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Page 3: インドエステとは -->
+<div class="page" id="p3">
+  <div class="page-header">
+    <span class="page-num">03</span>
+    <h2>インドエステとは</h2>
+    <p>アーユルヴェーダと体質（ドーシャ）タイプ</p>
+  </div>
+  <div class="page-body">
+    <div class="card">
+      <h3>アーユルヴェーダの基礎知識</h3>
+      <p>アーユルヴェーダは「生命の科学」を意味するインド最古の医学体系。5000年以上の歴史を持ち、WHOにも認められています。「自然のバランスを整えることで健康を維持する」という考え方に基づき、一人ひとりの体質に合ったケアを行います。</p>
+    </div>
+
+    <h3 style="margin: 24px 0 16px; font-size: 18px; font-weight: 700; color: var(--primary);">あなたのドーシャタイプは？</h3>
+
+    <div class="dosha-cards">
+      <div class="dosha-card vata">
+        <div class="icon">&#127744;</div>
+        <h4>ヴァータ（風）</h4>
+        <p>
+          <strong>体質:</strong> 痩せ型、冷え性、乾燥肌<br>
+          <strong>性格:</strong> 活動的、創造的<br>
+          <strong>おすすめ:</strong> 温め＆保湿重視の施術<br>
+          <strong>オイル:</strong> セサミオイルベース
+        </p>
+      </div>
+      <div class="dosha-card pitta">
+        <div class="icon">&#128293;</div>
+        <h4>ピッタ（火）</h4>
+        <p>
+          <strong>体質:</strong> 中肉、代謝が良い、肌荒れしやすい<br>
+          <strong>性格:</strong> 情熱的、リーダー気質<br>
+          <strong>おすすめ:</strong> クールダウン系の施術<br>
+          <strong>オイル:</strong> ココナッツオイルベース
+        </p>
+      </div>
+      <div class="dosha-card kapha">
+        <div class="icon">&#127754;</div>
+        <h4>カパ（水）</h4>
+        <p>
+          <strong>体質:</strong> がっちり型、むくみやすい、肌はしっとり<br>
+          <strong>性格:</strong> 穏やか、忍耐強い<br>
+          <strong>おすすめ:</strong> デトックス＆スリミング施術<br>
+          <strong>オイル:</strong> マスタードオイルベース
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 24px;">
+      <h3>一般的なエステとの違い</h3>
+      <p>一般的なエステが「機械による外側からのアプローチ」を主とするのに対し、インドエステは「オールハンドによる内側からのアプローチ」。体質を根本から整え、太りにくい体を目指すのが特徴です。リラクゼーション効果も非常に高く、施術中に眠ってしまうお客様も多数いらっしゃいます。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Page 4: メニュー -->
+<div class="page" id="p4">
+  <div class="page-header">
+    <span class="page-num">04</span>
+    <h2>施術メニュー</h2>
+    <p>あなたのお悩みに合った最適なコースをご提案します</p>
+  </div>
+  <div class="page-body">
+    <div class="menu-card">
+      <div class="menu-icon slim">&#128170;</div>
+      <div class="menu-content">
+        <h3>痩身コース</h3>
+        <div class="time">所要時間: 60-120分</div>
+        <p>お腹・太もも・二の腕など、気になる部位を集中的にケア。オールハンドで脂肪とセルライトにアプローチし、サイズダウンを目指します。</p>
+        <div class="recommend">こんな方に: 部分太りが気になる / サイズダウンしたい / セルライトをケアしたい</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-icon detox">&#127807;</div>
+      <div class="menu-content">
+        <h3>デトックスコース</h3>
+        <div class="time">所要時間: 60-90分</div>
+        <p>リンパの流れを促進し、体内に溜まった老廃物を排出。むくみの改善と体質改善を目指す全身ケアコースです。</p>
+        <div class="recommend">こんな方に: むくみやすい / 冷え性 / 疲れが溜まっている / 体質を改善したい</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-icon facial">&#10024;</div>
+      <div class="menu-content">
+        <h3>フェイシャルコース</h3>
+        <div class="time">所要時間: 45-60分</div>
+        <p>お顔のリフトアップ、小顔ケア、肌質改善。天然ハーブオイルで肌を滋養しながら、フェイスラインを引き締めます。</p>
+        <div class="recommend">こんな方に: 小顔になりたい / 肌のハリを取り戻したい / フェイスラインが気になる</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-icon bridal">&#128141;</div>
+      <div class="menu-content">
+        <h3>ブライダルコース</h3>
+        <div class="time">所要時間: 90-120分</div>
+        <p>挙式日から逆算したオーダーメイドプラン。デコルテ・二の腕・背中を集中ケアし、ドレス映えするボディラインを作ります。</p>
+        <div class="recommend">こんな方に: 結婚式を控えている / ドレスを美しく着たい / 特別な日に向けた集中ケア</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 5: ツインマッサージ -->
+<div class="page" id="p5">
+  <div class="page-header">
+    <span class="page-num">05</span>
+    <h2>神業ツインマッサージ</h2>
+    <p>カブール町田店だけの特別体験</p>
+  </div>
+  <div class="page-body">
+    <div class="twin-hero">
+      <h3>2人のセラピストによる同時施術</h3>
+      <p>究極のオールハンド体験。一度受けたらやみつきになる、当店だけの特別メニューです。</p>
+    </div>
+    <div class="twin-compare">
+      <div class="twin-box normal">
+        <h4>通常マッサージ</h4>
+        <ul>
+          <li>セラピスト: 1人</li>
+          <li>上半身→下半身と順番に施術</li>
+          <li>部位ごとに時間配分</li>
+          <li>じっくり丁寧なケア</li>
+        </ul>
+      </div>
+      <div class="twin-box twin">
+        <h4>神業ツインマッサージ</h4>
+        <ul>
+          <li>セラピスト: 2人</li>
+          <li>上半身＋下半身を同時に施術</li>
+          <li>2倍のハンドパワー</li>
+          <li>深い痩身効果＆究極のリラクゼーション</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px;">
+      <h3>効果が倍増する理由</h3>
+      <p>2人のセラピストが息を合わせて施術することで、全身の血流とリンパの流れが一気に促進されます。通常の施術では「上半身をほぐしている間に下半身が冷える」ということがありますが、ツインマッサージではそれがありません。全身が同時に温まり、代謝が最大限に活性化されます。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Page 6: 施術の流れ -->
+<div class="page" id="p6">
+  <div class="page-header">
+    <span class="page-num">06</span>
+    <h2>施術の流れ</h2>
+    <p>ご来店からお帰りまで</p>
+  </div>
+  <div class="page-body">
+    <div class="flow-timeline">
+      <div class="flow-step">
+        <span class="flow-dot">1</span>
+        <h4>ご来店・カウンセリング</h4>
+        <span class="flow-time">約15分</span>
+        <p>お悩みや目標をお伺いし、お体の状態をチェック。ドーシャ（体質）を見極め、最適な施術プランをご提案します。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-dot">2</span>
+        <h4>採寸・お着替え</h4>
+        <span class="flow-time">約5分</span>
+        <p>施術前にウエスト・ヒップ等を採寸。施術後の変化を数値で確認できます。専用ウェアにお着替えいただきます。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-dot">3</span>
+        <h4>オールハンド施術</h4>
+        <span class="flow-time">60-120分</span>
+        <p>天然ハーブオイルを使い、セラピストがオールハンドで全身をケア。体質に合わせた力加減と手技で、巡りを整えます。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-dot">4</span>
+        <h4>施術後採寸・アフターカウンセリング</h4>
+        <span class="flow-time">約10分</span>
+        <p>施術後のサイズを採寸し、変化を確認。自宅でのセルフケアアドバイスや、今後のプランをご提案します。</p>
+      </div>
+      <div class="flow-step">
+        <span class="flow-dot">5</span>
+        <h4>お着替え・次回ご予約</h4>
+        <span class="flow-time">約10分</span>
+        <p>ハーブティーでおくつろぎいただきながら、次回のご予約を承ります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 7: ビフォーアフター -->
+<div class="page" id="p7">
+  <div class="page-header">
+    <span class="page-num">07</span>
+    <h2>ビフォーアフター事例</h2>
+    <p>実際のお客様の変化をご紹介します ※効果には個人差があります</p>
+  </div>
+  <div class="page-body">
+    <div class="ba-card">
+      <h4>事例1: 40代女性 / 痩身コース 5回</h4>
+      <div class="ba-stats">
+        <div class="ba-stat"><div class="num">-5cm</div><div class="label">ウエスト</div></div>
+        <div class="ba-stat"><div class="num">-3cm</div><div class="label">ヒップ</div></div>
+        <div class="ba-stat"><div class="num">-2.5cm</div><div class="label">太もも</div></div>
+      </div>
+    </div>
+    <div class="ba-card">
+      <h4>事例2: 30代女性 / デトックスコース 8回</h4>
+      <div class="ba-stats">
+        <div class="ba-stat"><div class="num">-7cm</div><div class="label">ウエスト</div></div>
+        <div class="ba-stat"><div class="num">-4cm</div><div class="label">太もも</div></div>
+        <div class="ba-stat"><div class="num">-3kg</div><div class="label">体重</div></div>
+      </div>
+    </div>
+    <div class="ba-card">
+      <h4>事例3: 50代女性 / ツインマッサージ 3回</h4>
+      <div class="ba-stats">
+        <div class="ba-stat"><div class="num">-4cm</div><div class="label">ウエスト</div></div>
+        <div class="ba-stat"><div class="num">-2cm</div><div class="label">二の腕</div></div>
+        <div class="ba-stat"><div class="num">改善</div><div class="label">むくみ</div></div>
+      </div>
+    </div>
+    <p style="font-size: 12px; color: var(--muted); text-align: center; margin-top: 16px;">※上記は実際のお客様の事例に基づくイメージです。効果には個人差があります。</p>
+  </div>
+</div>
+
+<!-- Page 8: お客様の声 -->
+<div class="page" id="p8">
+  <div class="page-header">
+    <span class="page-num">08</span>
+    <h2>お客様の声</h2>
+    <p>ご利用いただいたお客様からの嬉しいお声</p>
+  </div>
+  <div class="page-body">
+    <div class="testimonial">
+      <div class="quote">「友達に『痩せた？何かしてるの？』と聞かれるようになりました。食事制限なしでこの変化は嬉しい！オールハンドの温かさが大好きで、毎回癒されています。」</div>
+      <div class="author">40代女性 / 痩身コース 月2回</div>
+    </div>
+    <div class="testimonial">
+      <div class="quote">「機械のエステが苦手で、ずっとハンドのサロンを探していました。カブールは全部手で施術してくれるので安心。ツインマッサージは最高の贅沢です。」</div>
+      <div class="author">30代女性 / ツインマッサージ</div>
+    </div>
+    <div class="testimonial">
+      <div class="quote">「デスクワークで肩こりとむくみがひどかったのが、通い始めてからかなり改善しました。痩身目的で来ましたが、体調全体が良くなった気がします。」</div>
+      <div class="author">30代女性 / デトックスコース</div>
+    </div>
+    <div class="testimonial">
+      <div class="quote">「結婚式前に集中的に通いました。背中とデコルテがスッキリして、ドレスのラインが全然違いました。挙式前の写真撮影でも自信を持てました。」</div>
+      <div class="author">20代女性 / ブライダルコース</div>
+    </div>
+    <div class="testimonial">
+      <div class="quote">「50代になって代謝が落ちたのか太りやすくなって…。カブールのインドエステで体質から見直してもらい、3ヶ月で体のラインが変わってきました。」</div>
+      <div class="author">50代女性 / 痩身コース 週1回</div>
+    </div>
+  </div>
+</div>
+
+<!-- Page 9: 料金 -->
+<div class="page" id="p9">
+  <div class="page-header">
+    <span class="page-num">09</span>
+    <h2>料金プラン</h2>
+    <p>お客様のご予算とお悩みに合ったプランをご提案します</p>
+  </div>
+  <div class="page-body">
+    <div class="price-card highlight">
+      <h4>初回体験コース</h4>
+      <div class="price">特別価格</div>
+      <div class="price-note">詳細はスタッフまでお尋ねください</div>
+    </div>
+    <div class="price-card">
+      <h4>痩身コース / デトックスコース</h4>
+      <div class="price">通常料金</div>
+      <div class="price-note">コース内容・時間により異なります</div>
+    </div>
+    <div class="price-card">
+      <h4>神業ツインマッサージ</h4>
+      <div class="price">プレミアム料金</div>
+      <div class="price-note">2人のセラピストによる特別施術</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <h3>お得な回数券</h3>
+      <p>継続的にお通いいただくほどお得になる回数券をご用意しております。詳しくはスタッフまでお気軽にお尋ねください。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Page 10: Q&A -->
+<div class="page" id="p10">
+  <div class="page-header">
+    <span class="page-num">10</span>
+    <h2>よくあるご質問</h2>
+    <p>お客様からよくいただくご質問にお答えします</p>
+  </div>
+  <div class="page-body">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">痛みはありますか？<span class="arrow">▼</span></div>
+      <div class="faq-a"><p>基本的に痛みはございません。オールハンドの施術は、機械と比べて体への負担が少なく、多くのお客様がリラックスされています。コリが強い部分は多少の圧を感じることがありますが、力加減は随時調整いたしますのでご安心ください。施術中に眠ってしまう方も多数いらっしゃいます。</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">どのくらいで効果が出ますか？<span class="arrow">▼</span></div>
+      <div class="faq-a"><p>個人差はありますが、1回目の施術後にスッキリ感やサイズダウンを実感される方が多いです。見た目の変化は3〜5回程度で現れ始め、体質改善は8〜10回程度の継続で実感いただけます。カウンセリングで目標をお伺いし、最適な回数と頻度をご提案いたします。</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">通う頻度の目安は？<span class="arrow">▼</span></div>
+      <div class="faq-a"><p>効果的な頻度は週1〜2回です。集中的にサイズダウンを目指す方は週2回、メンテナンスとして通われる方は月2回程度が目安です。お客様のライフスタイルとご予算に合わせて、無理のないペースをご提案いたします。</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">予約の取り方は？<span class="arrow">▼</span></div>
+      <div class="faq-a"><p>お電話、ホットペッパービューティー、公式LINEの3つの方法でご予約いただけます。当日予約も空きがあれば対応可能です。施術後に次回のご予約をお取りいただくと、ご希望の日時を確保しやすくなります。</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">キャンセルポリシーを教えてください<span class="arrow">▼</span></div>
+      <div class="faq-a"><p>ご予約の変更・キャンセルは前日までにご連絡ください。当日キャンセルの場合は、キャンセル料が発生する場合がございます。体調不良等やむを得ない場合は、お気軽にご相談ください。</p></div>
+    </div>
+  </div>
+  <footer>
+    <p>提供: シンパートナーズ</p>
+    <p style="margin-top:4px; font-size:11px; color:#9ca3af;">カブール 町田店 カウンセリングツール</p>
+  </footer>
+</div>
+
+<script>
+// Page navigation
+document.querySelectorAll('.page-nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.page-nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.page).classList.add('active');
+    window.scrollTo(0, 0);
+  });
+});
+
+// Checklist
+function updateCheck() {
+  const checks = document.querySelectorAll('#p2 input[type="checkbox"]');
+  const result = document.getElementById('checkResult');
+  const checked = Array.from(checks).filter(c => c.checked).length;
+
+  checks.forEach(c => {
+    c.closest('.check-item').classList.toggle('checked', c.checked);
+  });
+
+  if (checked >= 3) {
+    result.style.display = 'block';
+    if (checked >= 10) {
+      document.getElementById('resultTitle').textContent = 'おすすめ: 痩身コース + デトックスコース';
+      document.getElementById('resultText').textContent = 'お悩みが多岐にわたっています。まずはデトックスで体の巡りを整え、その後痩身コースで集中ケアするプランがおすすめです。';
+    } else if (checked >= 6) {
+      document.getElementById('resultTitle').textContent = 'おすすめ: 痩身コース';
+      document.getElementById('resultText').textContent = '体型のお悩みと生活習慣の改善が必要です。オールハンドの痩身コースで、体の外側と内側からアプローチしましょう。';
+    } else {
+      document.getElementById('resultTitle').textContent = 'おすすめ: デトックスコース';
+      document.getElementById('resultText').textContent = 'まずはデトックスコースで体の巡りを整えることをおすすめします。むくみや冷えの改善から始めましょう。';
+    }
+  } else {
+    result.style.display = 'none';
+  }
+}
+
+// FAQ toggle
+function toggleFaq(el) {
+  el.closest('.faq-item').classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
