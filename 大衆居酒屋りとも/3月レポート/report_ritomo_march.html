@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3月レポート | 町屋酒場りとも 野田阪神店</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap');
+
+    :root {
+      --primary: #1a1a2e;
+      --accent: #e94560;
+      --accent2: #0f3460;
+      --gold: #c5a55a;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #10b981;
+      --red: #ef4444;
+      --orange: #f59e0b;
+      --blue: #3b82f6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 50%, #16213e 100%);
+      color: #fff;
+      padding: 80px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(233,69,96,0.2);
+      border: 1px solid rgba(233,69,96,0.4);
+      color: #ff8a9e;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 16px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-size: 36px; font-weight: 900; line-height: 1.3; margin-bottom: 12px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .hero-meta { display: flex; gap: 24px; margin-top: 30px; flex-wrap: wrap; }
+    .hero-meta-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.6); }
+    .hero-meta-item svg { width: 16px; height: 16px; opacity: 0.6; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+
+    .section { padding: 60px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .section-label::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
+    .section-title { font-size: 26px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .section-desc { font-size: 14px; color: var(--muted); margin-bottom: 36px; }
+
+    .card {
+      background: var(--card); border-radius: 12px; border: 1px solid var(--border);
+      padding: 28px; margin-bottom: 20px; transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .card h3 { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+    .card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 36px; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; text-align: center;
+    }
+    .stat-card .label { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+    .stat-card .value { font-size: 32px; font-weight: 900; color: var(--primary); line-height: 1.2; }
+    .stat-card .unit { font-size: 14px; font-weight: 400; color: var(--muted); }
+    .stat-card .note { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .stat-card.highlight { border-color: var(--accent); background: linear-gradient(135deg, #fff5f7 0%, #fff 100%); }
+    .stat-card.highlight .value { color: var(--accent); }
+    .stat-card.green { border-color: var(--green); background: linear-gradient(135deg, #f0fdf4 0%, #fff 100%); }
+    .stat-card.green .value { color: var(--green); }
+
+    .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead { background: var(--primary); color: #fff; }
+    th { padding: 14px 16px; font-weight: 600; text-align: left; font-size: 12px; letter-spacing: 0.5px; }
+    td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) { background: #f9fafb; }
+
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px; }
+    .badge-green { background: #d1fae5; color: #065f46; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-orange { background: #fef3c7; color: #92400e; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-gray { background: #f3f4f6; color: #4b5563; }
+
+    .bar-chart { margin: 20px 0; }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .bar-label { width: 180px; font-size: 13px; font-weight: 500; text-align: right; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 28px; background: #f3f4f6; border-radius: 6px; overflow: hidden; }
+    .bar-fill {
+      height: 100%; border-radius: 6px; display: flex; align-items: center;
+      justify-content: flex-end; padding-right: 10px; font-size: 12px;
+      font-weight: 700; color: #fff; min-width: 40px; transition: width 1s ease;
+    }
+    .bar-fill.blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+    .bar-fill.green { background: linear-gradient(90deg, #10b981, #34d399); }
+    .bar-fill.orange { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .bar-fill.red { background: linear-gradient(90deg, #ef4444, #f87171); }
+    .bar-fill.purple { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .bar-fill.accent { background: linear-gradient(90deg, #e94560, #ff6b81); }
+
+    .callout {
+      background: linear-gradient(135deg, #fff5f7 0%, #fef3c7 100%);
+      border-left: 4px solid var(--accent); border-radius: 0 12px 12px 0;
+      padding: 24px 28px; margin: 24px 0;
+    }
+    .callout h4 { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+    .callout p { font-size: 13px; color: var(--text); }
+    .callout.green-callout {
+      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+      border-left-color: var(--green);
+    }
+    .callout.green-callout h4 { color: #166534; }
+    .callout.blue-callout {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-left-color: var(--blue);
+    }
+    .callout.blue-callout h4 { color: #1e40af; }
+
+    .toc {
+      background: var(--card); border: 2px solid var(--accent);
+      border-radius: 16px; padding: 32px; margin-bottom: 20px;
+    }
+    .toc h3 { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .toc-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .toc-list li a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 8px; text-decoration: none;
+      font-size: 13px; font-weight: 500; color: var(--text);
+      transition: all 0.15s; border: 1px solid transparent;
+    }
+    .toc-list li a:hover { background: #fff5f7; border-color: var(--accent); }
+    .toc-num {
+      font-size: 11px; font-weight: 800; color: #fff; background: var(--accent);
+      width: 24px; height: 24px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    /* Score Card */
+    .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 20px 0; }
+    .score-card { text-align: center; padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+    .score-card .score-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .score-card .score-value { font-size: 36px; font-weight: 900; line-height: 1; }
+    .score-card .score-grade { font-size: 14px; font-weight: 700; margin-top: 4px; }
+    .score-a { background: #f0fdf4; } .score-a .score-value, .score-a .score-grade { color: #16a34a; }
+    .score-c { background: #fef3c7; } .score-c .score-value, .score-c .score-grade { color: #d97706; }
+    .score-e { background: #fef2f2; } .score-e .score-value, .score-e .score-grade { color: #dc2626; }
+
+    /* Post Plan Cards */
+    .post-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+    .post-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px; transition: box-shadow 0.2s;
+    }
+    .post-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    .post-card .post-type {
+      font-size: 10px; font-weight: 700; color: #fff;
+      display: inline-block; padding: 2px 10px; border-radius: 4px; margin-bottom: 10px;
+    }
+    .post-card .post-type.type-food { background: var(--accent); }
+    .post-card .post-type.type-event { background: var(--blue); }
+    .post-card .post-type.type-drink { background: #8b5cf6; }
+    .post-card .post-type.type-lunch { background: var(--green); }
+    .post-card .post-type.type-info { background: var(--orange); }
+    .post-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
+    .post-card p { font-size: 12px; color: var(--muted); }
+    .post-card .post-kw { margin-top: 8px; }
+    .post-card .post-kw span {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      background: #f3f4f6; color: var(--accent); padding: 2px 8px; border-radius: 4px; margin-right: 4px;
+    }
+
+    /* Photo Grid */
+    .photo-idea-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .photo-idea {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px; display: flex; gap: 16px; align-items: flex-start;
+    }
+    .photo-idea .photo-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+    }
+    .photo-idea .photo-icon.food { background: linear-gradient(135deg, #fee2e2, #fecaca); }
+    .photo-idea .photo-icon.interior { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+    .photo-idea .photo-icon.staff { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+    .photo-idea .photo-icon.drink { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
+    .photo-idea h4 { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .photo-idea p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .photo-idea .photo-tips { font-size: 11px; color: var(--accent); font-weight: 600; margin-top: 6px; }
+
+    /* Review Strategy */
+    .strategy-timeline { position: relative; padding-left: 32px; }
+    .strategy-timeline::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .strategy-item { position: relative; padding-bottom: 28px; }
+    .strategy-item:last-child { padding-bottom: 0; }
+    .strategy-dot {
+      position: absolute; left: -32px; top: 4px; width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent2); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--accent2);
+    }
+    .strategy-dot.active { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+    .strategy-period { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .strategy-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .strategy-desc { font-size: 13px; color: var(--muted); }
+
+    .footer {
+      background: var(--primary); color: rgba(255,255,255,0.5);
+      padding: 40px; text-align: center; font-size: 12px;
+    }
+    .footer strong { color: rgba(255,255,255,0.8); }
+
+    @media (max-width: 768px) {
+      .hero { padding: 50px 20px 40px; }
+      .hero h1 { font-size: 24px; }
+      .container { padding: 0 20px; }
+      .section { padding: 40px 0; }
+      .section-title { font-size: 20px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .score-grid { grid-template-columns: 1fr 1fr; }
+      .post-grid { grid-template-columns: 1fr; }
+      .photo-idea-grid { grid-template-columns: 1fr; }
+      .toc-list { grid-template-columns: 1fr; }
+      .bar-label { width: 120px; font-size: 11px; }
+      .hero-meta { gap: 12px; }
+    }
+
+    @media print {
+      .hero { padding: 40px; }
+      .section { padding: 30px 0; }
+      .card, .post-card, .photo-idea { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">MONTHLY REPORT &mdash; MARCH 2026</div>
+    <h1>3月 MEO施策レポート<br><span>町屋酒場りとも 野田阪神店</span></h1>
+    <p class="hero-sub">口コミアシスト導入後の変化分析 &amp; 今後のアクションプラン</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        2026年3月10日
+      </div>
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        大阪府大阪市福島区大開1-15-24
+      </div>
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        提供: シンパートナーズ
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== TOC ===== -->
+<div class="section" style="padding-bottom:20px;">
+  <div class="container">
+    <div class="toc">
+      <h3><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>目次</h3>
+      <ul class="toc-list">
+        <li><a href="#sec1"><span class="toc-num">01</span>口コミアシスト設定状況</a></li>
+        <li><a href="#sec2"><span class="toc-num">02</span>導入後の変化（ポジティブ）</a></li>
+        <li><a href="#sec3"><span class="toc-num">03</span>GBP診断レポート</a></li>
+        <li><a href="#sec4"><span class="toc-num">04</span>今後の投稿案</a></li>
+        <li><a href="#sec5"><span class="toc-num">05</span>写真投稿案</a></li>
+        <li><a href="#sec6"><span class="toc-num">06</span>口コミ収集施策</a></li>
+        <li><a href="#sec7"><span class="toc-num">07</span>要対応アクション一覧</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: 口コミアシスト設定状況 ===== -->
+<div class="section" id="sec1">
+  <div class="container">
+    <div class="section-label">SECTION 01</div>
+    <h2 class="section-title">口コミアシスト 設定状況</h2>
+    <p class="section-desc">2026年2月1日に導入。現在の管理画面設定を確認し、改善ポイントを整理しました。</p>
+
+    <div class="card" style="border: 2px solid var(--accent);">
+      <h3 style="display:flex;align-items:center;gap:8px;">口コミアシスト アカウント情報 <span class="badge badge-orange">要改善あり</span></h3>
+      <p style="margin-bottom:16px;">口コミアシスト管理画面から取得した現在の設定状況です。</p>
+      <table style="font-size:13px;">
+        <tbody>
+          <tr><td style="width:200px;font-weight:600;">アカウントID</td><td>6806</td></tr>
+          <tr><td style="font-weight:600;">店舗名</td><td>町屋酒場りとも 野田阪神店</td></tr>
+          <tr><td style="font-weight:600;">Google連携</td><td><span style="color:var(--green);font-weight:700;">接続済み</span></td></tr>
+          <tr><td style="font-weight:600;">プラン</td><td>3万円プラン</td></tr>
+          <tr><td style="font-weight:600;">検索起点</td><td><span style="color:var(--green);font-weight:700;">登録済み</span> <span class="badge badge-green">設定完了</span></td></tr>
+          <tr><td style="font-weight:600;">検索半径</td><td><span style="color:var(--green);font-weight:700;">登録済み</span> <span class="badge badge-green">設定完了</span></td></tr>
+          <tr><td style="font-weight:600;">AI口コミ返信</td><td><span style="color:var(--red);font-weight:700;">OFF</span> <span class="badge badge-red">要設定</span></td></tr>
+          <tr><td style="font-weight:600;">Instagram連携</td><td><span style="color:var(--red);font-weight:700;">未連携</span></td></tr>
+          <tr><td style="font-weight:600;">アンケート数</td><td>1件（デフォルトのみ）</td></tr>
+          <tr><td style="font-weight:600;">クーポン</td><td>0件 <span class="badge badge-orange">未作成</span></td></tr>
+          <tr><td style="font-weight:600;">GBPカテゴリ</td><td>居酒屋（メイン） / ラーメン屋（サブ）</td></tr>
+          <tr><td style="font-weight:600;">担当者</td><td>川上和彦 様</td></tr>
+          <tr><td style="font-weight:600;">導入日</td><td>2026年2月1日</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left-color: var(--red);">
+      <h4 style="color:var(--red);">緊急対応ポイント</h4>
+      <p style="margin-top:8px;">
+        <strong>1. AI口コミ返信を有効化（毎日10:00推奨）</strong><br>
+        85件中29件が未返信のままです。返信率を100%に上げることでMEO評価が向上します。<br><br>
+        <strong>2. サブカテゴリ「ラーメン屋」の削除を検討</strong><br>
+        実態に合わないカテゴリが設定されているとGoogleの評価に悪影響を与える可能性があります。「日本料理店」「海鮮料理店」への変更を推奨します。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 導入後の変化 ===== -->
+<div class="section" id="sec2">
+  <div class="container">
+    <div class="section-label">SECTION 02</div>
+    <h2 class="section-title">導入後の変化（ポジティブ）</h2>
+    <p class="section-desc">口コミアシスト導入（2026年2月1日）から約1ヶ月間の変化をBefore / Afterで比較します。</p>
+
+    <!-- Before / After 比較テーブル -->
+    <div class="card" style="border:2px solid var(--green); overflow:hidden; padding:0;">
+      <div style="background:linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%); padding:20px 28px 12px;">
+        <h3 style="color:#166534; margin-bottom:0;">Before → After 数値比較</h3>
+        <p style="font-size:12px; color:#166534; opacity:0.8;">導入前（推定値）と導入後1ヶ月の実測値を比較</p>
+      </div>
+      <table style="font-size:13px;">
+        <thead style="background:#166534;">
+          <tr><th>指標</th><th style="text-align:center;">Before（導入前）</th><th style="text-align:center;">After（導入1ヶ月後）</th><th style="text-align:center;">変化</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">Googleマップ表示回数</td>
+            <td style="text-align:center; color:var(--muted);">計測なし</td>
+            <td style="text-align:center; font-weight:700; color:var(--accent);">4,116回/月</td>
+            <td style="text-align:center;"><span class="badge badge-green">計測開始</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">AI検索結果（SGE）表示</td>
+            <td style="text-align:center; color:var(--muted);">未対応</td>
+            <td style="text-align:center; font-weight:700; color:var(--green);">対応済み</td>
+            <td style="text-align:center;"><span class="badge badge-green">大幅改善</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">ルート検索（来店意向）</td>
+            <td style="text-align:center; color:var(--muted);">計測なし</td>
+            <td style="text-align:center; font-weight:700;">106件/月</td>
+            <td style="text-align:center;"><span class="badge badge-green">計測開始</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">合計アクション数</td>
+            <td style="text-align:center; color:var(--muted);">計測なし</td>
+            <td style="text-align:center; font-weight:700;">225件/月</td>
+            <td style="text-align:center;"><span class="badge badge-green">計測開始</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">口コミ管理</td>
+            <td style="text-align:center; color:var(--red);">バラバラに確認</td>
+            <td style="text-align:center; font-weight:700; color:var(--green);">一元管理（85件）</td>
+            <td style="text-align:center;"><span class="badge badge-green">効率化</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">口コミ返信率</td>
+            <td style="text-align:center; color:var(--red);">不明（手動対応）</td>
+            <td style="text-align:center; font-weight:700;">65.9%（56/85件）</td>
+            <td style="text-align:center;"><span class="badge badge-orange">可視化済み</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">未返信口コミ</td>
+            <td style="text-align:center; color:var(--red);">把握できていなかった</td>
+            <td style="text-align:center; font-weight:700;">29件を特定</td>
+            <td style="text-align:center;"><span class="badge badge-orange">要対応</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GBP診断 Before/After -->
+    <div class="card" style="border:2px solid var(--blue); overflow:hidden; padding:0;">
+      <div style="background:linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding:20px 28px 12px;">
+        <h3 style="color:#1e40af; margin-bottom:0;">GBP診断スコア Before → After</h3>
+        <p style="font-size:12px; color:#1e40af; opacity:0.8;">口コミアシストのAI診断による総合評価の変化</p>
+      </div>
+      <div style="padding:24px 28px;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom:24px;">
+          <div style="text-align:center;">
+            <div style="font-size:11px; font-weight:700; color:var(--muted); margin-bottom:8px;">BEFORE（導入前）</div>
+            <div style="width:120px; height:120px; border-radius:50%; border:6px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; background:#f9fafb;">
+              <div style="font-size:36px; font-weight:900; color:var(--muted);">?</div>
+              <div style="font-size:11px; color:var(--muted);">計測なし</div>
+            </div>
+          </div>
+          <div style="font-size:36px; color:var(--green);">→</div>
+          <div style="text-align:center;">
+            <div style="font-size:11px; font-weight:700; color:var(--green); margin-bottom:8px;">AFTER（2026年3月時点）</div>
+            <div style="width:120px; height:120px; border-radius:50%; border:6px solid var(--green); display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #f0fdf4, #d1fae5);">
+              <div style="font-size:36px; font-weight:900; color:var(--green);">76</div>
+              <div style="font-size:11px; color:#166534;">/ 100点</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
+          <div style="text-align:center; padding:16px; border-radius:10px; background:#f0fdf4; border:1px solid #a7f3d0;">
+            <div style="font-size:11px; color:var(--muted);">基本情報</div>
+            <div style="font-size:28px; font-weight:900; color:#16a34a;">100</div>
+            <div style="font-size:12px; font-weight:700; color:#16a34a;">A評価</div>
+          </div>
+          <div style="text-align:center; padding:16px; border-radius:10px; background:#f0fdf4; border:1px solid #a7f3d0;">
+            <div style="font-size:11px; color:var(--muted);">投稿</div>
+            <div style="font-size:28px; font-weight:900; color:#16a34a;">100</div>
+            <div style="font-size:12px; font-weight:700; color:#16a34a;">A評価</div>
+          </div>
+          <div style="text-align:center; padding:16px; border-radius:10px; background:#fef3c7; border:1px solid #fde68a;">
+            <div style="font-size:11px; color:var(--muted);">写真</div>
+            <div style="font-size:28px; font-weight:900; color:#d97706;">67</div>
+            <div style="font-size:12px; font-weight:700; color:#d97706;">C評価</div>
+          </div>
+          <div style="text-align:center; padding:16px; border-radius:10px; background:#fef2f2; border:1px solid #fecaca;">
+            <div style="font-size:11px; color:var(--muted);">クチコミ</div>
+            <div style="font-size:28px; font-weight:900; color:#dc2626;">0</div>
+            <div style="font-size:12px; font-weight:700; color:#dc2626;">E評価</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 数値ハイライト -->
+    <div class="stat-grid">
+      <div class="stat-card highlight">
+        <div class="label">Googleマップ表示回数</div>
+        <div class="value">4,116<span class="unit">回</span></div>
+        <div class="note">直近30日間（2/1〜3/3）</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">モバイル表示</div>
+        <div class="value">3,900<span class="unit">回</span></div>
+        <div class="note">全体の94.7%</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">ルート検索</div>
+        <div class="value">106<span class="unit">件</span></div>
+        <div class="note">来店意向の高いユーザー</div>
+      </div>
+      <div class="stat-card green">
+        <div class="label">合計アクション数</div>
+        <div class="value">225<span class="unit">件</span></div>
+        <div class="note">電話+Web+メニュー+ルート</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>ユーザーアクション内訳（直近30日間）</h3>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">ルート検索</div>
+          <div class="bar-track"><div class="bar-fill accent" style="width:80%;">106件</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">ウェブサイトクリック</div>
+          <div class="bar-track"><div class="bar-fill blue" style="width:43%;">57件</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">電話タップ</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:30%;">40件</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">メニュー閲覧</div>
+          <div class="bar-track"><div class="bar-fill orange" style="width:17%;">22件</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout green-callout">
+      <h4>導入後1ヶ月のポジティブな変化まとめ</h4>
+      <p style="margin-top:8px;">
+        <strong>1. AI検索（SGE）対応で検索露出が大幅改善</strong><br>
+        GoogleのAI検索結果にも表示されるようになり、従来のキーワード検索に加えて「野田阪神で美味しい居酒屋は？」といったAI検索からの流入も期待できる状態になりました。<br><br>
+        <strong>2. GBP診断スコア76点 ー 基盤は整った状態</strong><br>
+        基本情報100点・投稿100点と、診断レポートで高い基礎力が証明されました。写真とクチコミを改善すれば90点超えが見えます。<br><br>
+        <strong>3. 月間4,116回の表示 × 225アクション ー 数値が「見える化」</strong><br>
+        これまで感覚でしか分からなかったGoogleからの集客効果を、数字で把握できるようになりました。<br><br>
+        <strong>4. ルート検索106件 = 月間100人以上が来店を検討</strong><br>
+        ルート検索は「実際に行きたい」というユーザーの強い意思表示。口コミ評価を上げることで転換率が向上します。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>口コミ状況サマリー</h3>
+      <table style="font-size:13px;">
+        <tbody>
+          <tr><td style="width:200px;font-weight:600;">累計口コミ数</td><td><strong>85件</strong>（2017年7月〜現在）</td></tr>
+          <tr><td style="font-weight:600;">平均評価</td><td><strong>3.93</strong>（5段階）</td></tr>
+          <tr><td style="font-weight:600;">返信済み</td><td>56件（65.9%） <span class="badge badge-orange">返信率を上げる必要あり</span></td></tr>
+          <tr><td style="font-weight:600;">未返信</td><td>29件 <span class="badge badge-red">要対応</span></td></tr>
+          <tr><td style="font-weight:600;">ローカルガイド率</td><td>70.6%（60/85件）</td></tr>
+          <tr><td style="font-weight:600;">2026年の口コミ</td><td>1件（2/25 - 4つ星）</td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:16px;">
+        <h3 style="margin-bottom:12px;">評価分布</h3>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label">5つ星</div>
+            <div class="bar-track"><div class="bar-fill green" style="width:30.6%;">26件（30.6%）</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">4つ星</div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:47.1%;">40件（47.1%）</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">3つ星</div>
+            <div class="bar-track"><div class="bar-fill orange" style="width:11.8%;">10件</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">2つ星</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:5.9%;">5件</div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">1つ星</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:4.7%;">4件</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: GBP診断 ===== -->
+<div class="section" id="sec3">
+  <div class="container">
+    <div class="section-label">SECTION 03</div>
+    <h2 class="section-title">GBP診断レポート</h2>
+    <p class="section-desc">口コミアシストのAI診断機能で取得した最新のGoogleビジネスプロフィール診断結果です（2026年3月10日時点）。</p>
+
+    <div class="stat-grid" style="grid-template-columns: 1fr;">
+      <div class="stat-card highlight">
+        <div class="label">総合スコア</div>
+        <div class="value">76<span class="unit">点 / 100点</span></div>
+        <div class="note">写真と口コミの改善で90点以上を目指しましょう</div>
+      </div>
+    </div>
+
+    <div class="score-grid">
+      <div class="score-card score-a">
+        <div class="score-label">基本情報</div>
+        <div class="score-value">100</div>
+        <div class="score-grade">A 評価</div>
+      </div>
+      <div class="score-card score-a">
+        <div class="score-label">投稿</div>
+        <div class="score-value">100</div>
+        <div class="score-grade">A 評価</div>
+      </div>
+      <div class="score-card score-c">
+        <div class="score-label">写真</div>
+        <div class="score-value">67</div>
+        <div class="score-grade">C 評価</div>
+      </div>
+      <div class="score-card score-e">
+        <div class="score-label">クチコミ</div>
+        <div class="score-value">0</div>
+        <div class="score-grade">E 評価</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>診断結果のポイント</h4>
+      <p>
+        基本情報と投稿はA評価で非常に優れた状態です。一方、<strong>写真はC評価（67点）</strong>で改善の余地があります。料理の写真、店内の雰囲気が伝わる写真を増やすことが重要です。<br><br>
+        最も緊急なのは<strong>クチコミのE評価（0点）</strong>です。これは口コミへの返信体制が構築されていないことが原因です。AI返信機能を有効化し、全件返信を実現することで大幅なスコア改善が見込めます。
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 今後の投稿案 ===== -->
+<div class="section" id="sec4">
+  <div class="container">
+    <div class="section-label">SECTION 04</div>
+    <h2 class="section-title">今後の投稿案</h2>
+    <p class="section-desc">GBP投稿を週2〜3回ペースで実施することを目標に、3月後半〜4月の投稿案を作成しました。</p>
+
+    <p style="font-size:13px; color:var(--accent); font-weight:600; margin-bottom:20px;">※ 各投稿文はそのままコピー＆ペーストしてGBPに投稿できます。写真を1枚添付して投稿してください。</p>
+
+    <div class="post-grid">
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-lunch">ランチ｜投稿①</span>
+        <h4>名物 海老天丼ランチ</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">📣 野田阪神で人気のランチをお探しですか？
+
+町屋酒場りとも 野田阪神店の名物「海老天丼」をご紹介します🦐
+
+✅ 大ぶりの海老をカラッと揚げたサクサクの天丼
+✅ お味噌汁・小鉢付きでボリューム満点
+✅ 野田阪神駅から徒歩2分の好立地
+
+平日ランチ 11:30〜14:00
+お一人様でもお気軽にどうぞ。
+
+📍 大阪市福島区大開1-15-24
+📞 ご予約・お問い合わせはお電話またはGoogleマップから
+
+#野田阪神ランチ #海老天丼 #野田阪神居酒屋 #福島区ランチ #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 ランチ</span><span>海老天丼</span><span>福島区 ランチ</span></div>
+      </div>
+
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-food">料理｜投稿②</span>
+        <h4>本日の刺身盛り合わせ</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">🐟 本日の刺身盛り合わせ、入荷しました！
+
+野田阪神の居酒屋「町屋酒場りとも」では
+毎日市場から届く新鮮な魚介をご提供しています。
+
+本日のラインナップ：
+・鮮度抜群のマグロ赤身
+・プリプリの甘エビ
+・脂の乗ったサーモン
+・旬の白身魚
+
+日本酒との相性も抜群です🍶
+大将おすすめの地酒と一緒にいかがですか？
+
+📍 野田阪神駅 徒歩2分
+🕐 ディナー 17:00〜23:00（L.O. 22:30）
+
+#野田阪神居酒屋 #刺身盛り合わせ #海鮮居酒屋 #野田阪神 #日本酒 #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 居酒屋</span><span>刺身</span><span>海鮮</span></div>
+      </div>
+
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-drink">日本酒｜投稿③</span>
+        <h4>厳選日本酒のご紹介</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">🍶 今月の日本酒、入荷しました！
+
+全国各地から大将が厳選した地酒を
+常時10種類以上取り揃えています。
+
+今月のおすすめ：
+・獺祭 純米大吟醸（山口）
+・八海山 特別本醸造（新潟）
+・黒龍 いっちょらい（福井）
+
+お料理に合わせた日本酒のペアリングも
+お気軽にご相談ください。
+
+「今日はどれがおすすめ？」
+大将との会話も楽しみのひとつです😊
+
+📍 野田阪神駅すぐ｜町屋酒場りとも
+📞 ご予約はGoogleマップまたはお電話で
+
+#野田阪神 #日本酒 #地酒 #居酒屋 #野田阪神居酒屋 #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 日本酒</span><span>地酒</span><span>和食</span></div>
+      </div>
+
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-event">宴会｜投稿④</span>
+        <h4>歓送迎会コースのご案内</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">🌸 歓送迎会のご予約、承ります！
+
+3月〜4月は歓送迎会シーズン。
+野田阪神の居酒屋「町屋酒場りとも」で
+思い出に残る宴会はいかがですか？
+
+🍻 飲み放題付きコース 4,000円〜
+━━━━━━━━━━
+・前菜三種盛り
+・お刺身盛り合わせ
+・名物クリームコロッケ
+・季節の焼き魚
+・〆のご飯もの
+・デザート
+＋2時間飲み放題（生ビール・日本酒・ハイボール他）
+━━━━━━━━━━
+
+✅ 最大20名様まで対応
+✅ 野田阪神駅から徒歩2分
+✅ 貸切もご相談ください
+
+📞 ご予約はお早めに！
+Googleマップまたはお電話でお気軽にどうぞ。
+
+#野田阪神宴会 #歓送迎会 #飲み放題 #野田阪神居酒屋 #宴会コース #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 宴会</span><span>歓送迎会</span><span>飲み放題</span></div>
+      </div>
+
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-food">料理｜投稿⑤</span>
+        <h4>人気No.1 手作りクリームコロッケ</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">🔥 当店の人気No.1メニュー！
+「手作りクリームコロッケ」をご紹介します。
+
+サクッと揚がった衣の中から
+とろ〜り濃厚なクリームがあふれ出します✨
+
+口コミでも大好評！
+「ここのクリームコロッケは絶品」
+「毎回必ず注文する」
+とのお声をたくさんいただいています。
+
+ビールとの相性も抜群🍺
+仕事帰りの一杯にぜひどうぞ。
+
+📍 野田阪神駅 徒歩2分
+　 町屋酒場りとも 野田阪神店
+🕐 ランチ 11:30〜14:00 / ディナー 17:00〜23:00
+
+#野田阪神居酒屋 #クリームコロッケ #居酒屋メニュー #野田阪神 #コスパ最強 #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 居酒屋</span><span>クリームコロッケ</span><span>コスパ</span></div>
+      </div>
+
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-info">お知らせ｜投稿⑥</span>
+        <h4>春の旬メニュー登場</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">🌸 春限定メニュー、始まりました！
+
+町屋酒場りともでは
+旬の食材を使った春の限定メニューをご用意しています。
+
+🌿 春のおすすめ：
+・桜鯛の刺身 ー 上品な甘みが絶品
+・筍の天ぷら ー サクッとほくほく
+・菜の花のおひたし ー ほろ苦い春の味
+・春キャベツと豚の蒸し焼き ー 甘みたっぷり
+
+ランチでも春メニューお楽しみいただけます。
+季節を感じる和食を、野田阪神で。
+
+📍 町屋酒場りとも 野田阪神店
+📞 Googleマップ or お電話でご予約ください
+
+#野田阪神和食 #春メニュー #旬の味覚 #野田阪神ランチ #居酒屋ランチ #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 和食</span><span>春メニュー</span><span>ランチ</span></div>
+      </div>
+
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-lunch">ランチ｜投稿⑦</span>
+        <h4>日替わりランチ定食</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">🍚 本日の日替わりランチ定食！
+
+野田阪神で「ちゃんとしたご飯」が食べたい。
+そんな方にぴったりの日替わり定食です。
+
+本日のメニュー：
+・焼き魚定食（サバの塩焼き）
+・煮物小鉢付き
+・お味噌汁
+・ご飯おかわり自由
+
+💰 850円〜（税込）
+
+平日ランチ 11:30〜14:00
+野田阪神駅から徒歩2分。
+お一人様もお気軽にどうぞ🙏
+
+📍 町屋酒場りとも 野田阪神店
+　 大阪市福島区大開1-15-24
+
+#野田阪神ランチ #日替わり定食 #ランチ定食 #福島区ランチ #野田阪神 #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 ランチ</span><span>定食</span><span>福島区 ランチ</span></div>
+      </div>
+
+      <div class="post-card" style="grid-column:1/-1;">
+        <span class="post-type type-drink">日本酒｜投稿⑧</span>
+        <h4>和牛たたき × 日本酒ペアリング</h4>
+        <div style="background:#f9fafb; border:1px solid var(--border); border-radius:8px; padding:16px; margin:8px 0; font-size:13px; line-height:1.9; position:relative;">
+          <button onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.copy-text').innerText).then(()=>{this.innerText='コピー済み!';setTimeout(()=>{this.innerText='コピー'},1500)})" style="position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;">コピー</button>
+          <div class="copy-text">🥩 贅沢な夜のすごしかた。
+
+厳選和牛のたたきに
+大将おすすめの日本酒を合わせる。
+
+とろけるような赤身の旨味と
+キリッと冷えた純米吟醸の組み合わせ。
+
+「今日は何が合いますか？」
+と聞いていただければ
+料理に合わせた一杯をご提案します🍶
+
+ワンランク上の居酒屋体験を
+野田阪神で、お楽しみください。
+
+📍 町屋酒場りとも 野田阪神店
+🕐 ディナー 17:00〜23:00
+📞 ご予約はGoogleマップまたはお電話で
+
+#野田阪神居酒屋 #和牛たたき #日本酒ペアリング #野田阪神 #大人の居酒屋 #町屋酒場りとも</div>
+        </div>
+        <div class="post-kw"><span>野田阪神 居酒屋</span><span>和牛</span><span>日本酒</span></div>
+      </div>
+    </div>
+
+    <div class="callout blue-callout" style="margin-top:24px;">
+      <h4>投稿時のポイント</h4>
+      <p>
+        <strong>投稿頻度：</strong>週2〜3回（最低でも週1回）。上記8本で約1ヶ月分<br>
+        <strong>投稿時間：</strong>ランチ系は10:00〜11:00、ディナー系は15:00〜16:00が効果的<br>
+        <strong>写真：</strong>必ず1枚以上の写真を添付。明るく美味しそうに見える写真を選ぶ<br>
+        <strong>使い方：</strong>各投稿の「コピー」ボタンで本文をコピー → GBP管理画面に貼り付け → 写真添付 → 投稿<br>
+        <strong>CTA：</strong>各投稿に「Googleマップから」「お電話で」など行動を促す一文を含めています
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: 写真投稿案 ===== -->
+<div class="section" id="sec5">
+  <div class="container">
+    <div class="section-label">SECTION 05</div>
+    <h2 class="section-title">写真投稿案</h2>
+    <p class="section-desc">GBP診断で写真がC評価（67点）のため、以下のカテゴリで写真を追加し、A評価を目指します。月5〜10枚ペースで追加を推奨。</p>
+
+    <div class="photo-idea-grid">
+      <div class="photo-idea">
+        <div class="photo-icon food">&#127858;</div>
+        <div>
+          <h4>看板メニュー：海老天丼</h4>
+          <p>自然光の入る席で撮影。天丼を真上やや斜めから。衣のサクサク感と海老の大きさが伝わるアングルで。味噌汁・小鉢も添えてセット感を演出。</p>
+          <div class="photo-tips">撮影のコツ：昼の自然光で。フラッシュNG。箸で海老を持ち上げるシズル感カットも有効。</div>
+        </div>
+      </div>
+
+      <div class="photo-idea">
+        <div class="photo-icon food">&#127843;</div>
+        <div>
+          <h4>刺身盛り合わせ</h4>
+          <p>新鮮さが伝わる鮮やかな色彩を意識。大葉やわさび、氷の演出も活用。「本日の刺身」として日替わり感を出す。</p>
+          <div class="photo-tips">撮影のコツ：盛り付け直後に撮影。色が鮮やかなうちに。やや斜め上45度から。</div>
+        </div>
+      </div>
+
+      <div class="photo-idea">
+        <div class="photo-icon food">&#127833;</div>
+        <div>
+          <h4>手作りクリームコロッケ</h4>
+          <p>断面を見せてとろけるクリームを撮影。揚げたて熱々の湯気が出ている瞬間がベスト。ソースをかける動きのあるカットも。</p>
+          <div class="photo-tips">撮影のコツ：断面カットと全体カットの2枚セットで。揚げたてすぐに撮影。</div>
+        </div>
+      </div>
+
+      <div class="photo-idea">
+        <div class="photo-icon drink">&#127862;</div>
+        <div>
+          <h4>日本酒ラインナップ</h4>
+          <p>おちょこに注ぐ瞬間や、ボトルを並べた「品揃え感」カット。季節の銘柄を手に持つスタッフの写真も効果的。</p>
+          <div class="photo-tips">撮影のコツ：ボトルのラベルが読めるように。カウンター越しの雰囲気カットも。</div>
+        </div>
+      </div>
+
+      <div class="photo-idea">
+        <div class="photo-icon interior">&#127970;</div>
+        <div>
+          <h4>店内の雰囲気・カウンター</h4>
+          <p>温かみのある店内の雰囲気が伝わるカット。カウンター席、テーブル席、入口の暖簾など。「町屋酒場」の風情を表現。</p>
+          <div class="photo-tips">撮影のコツ：営業前の清潔な状態で。照明をつけた夕方の雰囲気が最適。</div>
+        </div>
+      </div>
+
+      <div class="photo-idea">
+        <div class="photo-icon staff">&#128104;&#8205;&#127859;</div>
+        <div>
+          <h4>大将・女将さんの笑顔</h4>
+          <p>口コミでも「女将が美人」「大将もイケおじ」と高評価のお二人。調理中や接客中の自然な笑顔のカットが最も効果的。</p>
+          <div class="photo-tips">撮影のコツ：ポーズではなく自然な表情を。調理している手元＋顔の構図がベスト。</div>
+        </div>
+      </div>
+
+      <div class="photo-idea">
+        <div class="photo-icon food">&#127857;</div>
+        <div>
+          <h4>和牛たたき / 季節メニュー</h4>
+          <p>和牛の赤身の美しさが伝わるカット。季節メニュー（春：筍の天ぷら、桜鯛）も撮影して定期的に更新。</p>
+          <div class="photo-tips">撮影のコツ：肉の赤色を引き立てる暗めの背景。テーブルに器を置いて撮影。</div>
+        </div>
+      </div>
+
+      <div class="photo-idea">
+        <div class="photo-icon interior">&#127374;</div>
+        <div>
+          <h4>外観・暖簾・看板</h4>
+          <p>初めて来るお客様が迷わないための外観写真。夜の提灯が灯った雰囲気カットと、昼間の明るいカットの両方。</p>
+          <div class="photo-tips">撮影のコツ：Googleマップのストリートビューと同じ角度で。入口が分かりやすいように。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <h4>写真投稿の優先順位</h4>
+      <p>
+        <strong>最優先：</strong>海老天丼（ランチKW対策）、刺身盛り合わせ（居酒屋KW対策）<br>
+        <strong>高優先：</strong>店内の雰囲気、大将・女将さんの写真<br>
+        <strong>中優先：</strong>日本酒、クリームコロッケ、外観<br>
+        <strong>継続：</strong>季節メニューは毎月更新
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 口コミ収集施策 ===== -->
+<div class="section" id="sec6">
+  <div class="container">
+    <div class="section-label">SECTION 06</div>
+    <h2 class="section-title">口コミ収集施策</h2>
+    <p class="section-desc">Google口コミを月5〜8件ペースで増やすための具体的な施策です。特典・タイミング・声かけ方法を詳しく解説します。</p>
+
+    <div class="card" style="border:2px solid var(--green);">
+      <h3 style="color:var(--green);">施策1：QRコード付きカード × 特典</h3>
+      <table style="font-size:13px; margin-top:12px;">
+        <tbody>
+          <tr><td style="width:160px;font-weight:600;">特典内容</td><td><strong>その場でドリンク1杯サービス</strong>（ソフトドリンク or 生ビール）</td></tr>
+          <tr><td style="font-weight:600;">対象</td><td>ランチ・ディナー全てのお客様</td></tr>
+          <tr><td style="font-weight:600;">配布方法</td><td>お食事が落ち着いたタイミングで「よろしければご感想をお聞かせください。すぐに1杯お出しします」とカードを手渡し</td></tr>
+          <tr><td style="font-weight:600;">カード内容</td><td>QRコード（口コミアシストURL）＋「口コミを書いていただくとドリンク1杯その場でサービス」</td></tr>
+          <tr><td style="font-weight:600;">設置場所</td><td>レジ横、テーブル各席、トイレ前</td></tr>
+          <tr><td style="font-weight:600;">目標</td><td>月5〜8件の新規Google口コミ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>施策2：ランチタイム集中キャンペーン</h3>
+      <table style="font-size:13px; margin-top:12px;">
+        <tbody>
+          <tr><td style="width:160px;font-weight:600;">特典内容</td><td><strong>ランチ利用客限定：口コミ投稿でその場でコーヒーorデザート1品サービス</strong></td></tr>
+          <tr><td style="font-weight:600;">タイミング</td><td>平日ランチ（11:30〜14:00）に来店したお客様</td></tr>
+          <tr><td style="font-weight:600;">理由</td><td>「野田阪神 ランチ」のKWで上位表示を狙うため、ランチ関連の口コミを集中的に集める</td></tr>
+          <tr><td style="font-weight:600;">期間</td><td>3月中旬〜4月末（2ヶ月間の集中期間）</td></tr>
+          <tr><td style="font-weight:600;">声かけ例</td><td>「今日のお食事はいかがでしたか？もしよろしければ、Googleで感想を書いていただけると嬉しいです。すぐにデザートをお持ちしますね」</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>施策3：常連客への個別アプローチ</h3>
+      <table style="font-size:13px; margin-top:12px;">
+        <tbody>
+          <tr><td style="width:160px;font-weight:600;">特典内容</td><td><strong>常連様限定：口コミ投稿で日本酒1杯（おすすめ銘柄）サービス</strong></td></tr>
+          <tr><td style="font-weight:600;">タイミング</td><td>常連のお客様のお帰り際（月2〜3名に厳選して依頼）</td></tr>
+          <tr><td style="font-weight:600;">理由</td><td>常連客は満足度が高く、質の良い口コミ（長文・具体的メニュー名入り）を書いてくれる確率が高い</td></tr>
+          <tr><td style="font-weight:600;">声かけ例</td><td>「○○さん、いつもありがとうございます。実はGoogleの口コミをもう少し増やしたくて…もしよろしければ、いつもの感想を書いていただけると助かります」</td></tr>
+          <tr><td style="font-weight:600;">ポイント</td><td>一度に多くの人に頼まず、毎週1〜2名に絞って自然に依頼する</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>施策4：口コミアシスト アンケート機能の活用</h3>
+      <table style="font-size:13px; margin-top:12px;">
+        <tbody>
+          <tr><td style="width:160px;font-weight:600;">設定内容</td><td>来店目的を選択式に設定（「ランチ」「飲み会」「宴会」「デート」「一人飲み」）</td></tr>
+          <tr><td style="font-weight:600;">KW誘導</td><td>アンケート内でエリア名「野田阪神」やメニュー名が自然に口コミに含まれるよう設問を設計</td></tr>
+          <tr><td style="font-weight:600;">分散方法</td><td>30%：エリア名＋シーン / 30%：メニュー名 / 20%：雰囲気 / 20%：純粋な感想</td></tr>
+          <tr><td style="font-weight:600;">評価分岐</td><td>高評価（4〜5星）→ Googleへ誘導 / 低評価（1〜3星）→ 店舗への直接フィードバックへ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <h4>口コミ収集のタイミングガイド</h4>
+      <p>
+        <strong>最適なタイミング（転換率が高い順）：</strong><br>
+        1. <strong>お会計時</strong> ー 食事の満足感が最も高い瞬間。カードを手渡しながら一言添える<br>
+        2. <strong>食後のドリンク提供時</strong> ー 食事が落ち着いた後、スマホを触っている間に依頼<br>
+        3. <strong>翌日のLINE/SMS</strong> ー 「昨日はありがとうございました」のメッセージにQRコードURLを添える<br><br>
+        <strong>避けるべきタイミング：</strong><br>
+        ・食事中（食事の邪魔になる）<br>
+        ・混雑時（落ち着いて書けない）<br>
+        ・初回来店時（まだ信頼関係ができていない場合）
+      </p>
+    </div>
+
+    <div class="callout blue-callout">
+      <h4>口コミ返信のルール</h4>
+      <p>
+        <strong>AI口コミ返信を有効化後のルール：</strong><br>
+        ・全ての口コミに24時間以内に返信（AI自動返信を活用）<br>
+        ・返信文には「野田阪神」「居酒屋」「ランチ」などのKWを自然に含める<br>
+        ・ネガティブな口コミには誠実に対応し、改善姿勢を示す<br>
+        ・定型文にならないよう、口コミの内容に合わせたパーソナライズを心がける<br><br>
+        <strong>返信例：</strong>「○○様、町屋酒場りとも 野田阪神店にお越しいただきありがとうございます。海老天丼をお気に召していただけて嬉しいです。ランチは毎日11時半から営業しておりますので、またぜひお立ち寄りください。」
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 7: 要対応アクション一覧 ===== -->
+<div class="section" id="sec7" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); padding: 60px 0;">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold);">SECTION 07</div>
+    <h2 class="section-title" style="color:#fff;">要対応アクション一覧</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.6);">優先度順に整理した今月のアクションアイテムです。</p>
+
+    <div class="card" style="border:2px solid var(--accent);">
+      <h3 style="color:var(--accent);">緊急（今週中に対応）</h3>
+      <table style="font-size:13px; margin-top:12px;">
+        <thead>
+          <tr><th style="width:40px;">No.</th><th>アクション</th><th style="width:100px;">担当</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td>AI口コミ返信を有効化（毎日10:00に自動返信）</td><td>シンパートナーズ</td></tr>
+          <tr><td><strong>2</strong></td><td>未返信の口コミ29件に一括返信</td><td>シンパートナーズ</td></tr>
+          <tr><td><strong>3</strong></td><td>サブカテゴリを「ラーメン屋」→「日本料理店」に変更</td><td>店舗様</td></tr>
+          <tr><td><strong>4</strong></td><td>QRコード付き口コミカードを印刷・設置</td><td>店舗様</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3 style="color:var(--orange);">高優先（3月中に対応）</h3>
+      <table style="font-size:13px; margin-top:12px;">
+        <thead>
+          <tr><th style="width:40px;">No.</th><th>アクション</th><th style="width:100px;">担当</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>5</strong></td><td>アンケートのKW設計（来店目的の選択式追加）</td><td>シンパートナーズ</td></tr>
+          <tr><td><strong>6</strong></td><td>看板メニューの写真撮影（海老天丼・刺身・クリームコロッケ）</td><td>店舗様</td></tr>
+          <tr><td><strong>7</strong></td><td>GBP投稿を開始（週2回ペース）</td><td>シンパートナーズ</td></tr>
+          <tr><td><strong>8</strong></td><td>ランチタイム口コミキャンペーン開始</td><td>店舗様</td></tr>
+          <tr><td><strong>9</strong></td><td>主要キーワード5語を登録し順位計測を開始</td><td>シンパートナーズ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3 style="color:var(--blue);">中期（4月以降）</h3>
+      <table style="font-size:13px; margin-top:12px;">
+        <thead>
+          <tr><th style="width:40px;">No.</th><th>アクション</th><th style="width:100px;">担当</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>10</strong></td><td>Instagram連携の検討・設定</td><td>両者</td></tr>
+          <tr><td><strong>11</strong></td><td>店内・外観の写真撮影（プロカメラマン推奨）</td><td>シンパートナーズ</td></tr>
+          <tr><td><strong>12</strong></td><td>宴会コース・飲み放題のGBP投稿強化</td><td>シンパートナーズ</td></tr>
+          <tr><td><strong>13</strong></td><td>口コミ月次レポートの定期配信開始</td><td>シンパートナーズ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>
+    本レポートは<strong>シンパートナーズ</strong>が作成しました。<br>
+    内容に関するご質問・ご相談はお気軽にお問い合わせください。<br><br>
+    <strong>口コミアシスト</strong> Powered by シンパートナーズ<br>
+    &copy; 2026 Shin Partners. All Rights Reserved.
+  </p>
+</footer>
+
+</body>
+</html>
